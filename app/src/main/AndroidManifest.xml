@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Add_New_Class"
+            android:label="@string/title_activity_add__new__class"></activity>
     </application>
 
 </manifest>
