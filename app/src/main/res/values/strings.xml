@@ -12,7 +12,7 @@
     <string name="show_gpa_stats">Current GPA Stats</string>
 
 
-    <string name="app_name2">GPATrack</string>
+    <string name="menu">Menu</string>
     
     <string name="NO_NAME">No Name Given</string>
 </resources>
