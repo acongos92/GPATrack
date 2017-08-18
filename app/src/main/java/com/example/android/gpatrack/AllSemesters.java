@@ -27,7 +27,7 @@ public class AllSemesters extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Help, I'm trapped in an email button", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
