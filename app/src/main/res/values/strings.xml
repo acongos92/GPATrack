@@ -6,6 +6,7 @@
 
     <string name="action_settings">Settings</string>
 
+<<<<<<< HEAD
 
 
     <!-- Menu Item String -->
@@ -15,4 +16,7 @@
 
     <string name="app_name2">GPATrack</string>
 
+=======
+    <string name="NO_NAME">No Name Given</string>
+>>>>>>> master
 </resources>
