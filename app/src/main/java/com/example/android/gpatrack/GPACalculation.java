@@ -10,6 +10,7 @@ public class GPACalculation {
     private int hours;
     private double gradePoints;
 
+
     /**
      * existing gpa constructor
      * @param hours credit hours attempted
@@ -34,7 +35,7 @@ public class GPACalculation {
      * @return cumulative gpa
      */
     public double calculateGPA(){
-        //avoid cancerous formatting :) 
+        //avoid cancerous formatting :)
         return totalPoints(this.hours,this.gradePoints)/this.hours;
     }
 
