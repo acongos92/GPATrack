@@ -5,19 +5,15 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Add New Classes" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Add Individual grades" />
+            android:title="@string/add_new_class" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Add new semester" />
+            android:title="@string/add_new_semester" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Show Exisitng GPA stats" />
+            android:title="@string/show_gpa_stats"/>
     </group>
 
     <item android:title="Communicate">

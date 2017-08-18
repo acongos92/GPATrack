@@ -5,4 +5,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="add_new_class">Add New Class</string>
+
+    <string name="add_new_semester">Add New Semester</string>
+
+    <string name="show_gpa_stats">Current GPA</string>
 </resources>
