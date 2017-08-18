@@ -1,5 +1,6 @@
 package com.example.android.gpatrack;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.example.android.gpatrack.GPACalculation;
 
 
@@ -81,16 +84,36 @@ public class AllSemesters extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.add_new_class) {
+            Context context = getApplicationContext();
+            CharSequence text = "Add new class toast";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        } else if (id == R.id.add_new_semester) {
+            Context context = getApplicationContext();
+            CharSequence text = "Add new semester toast";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        } else if (id == R.id.current_gpa) {
+            Context context = getApplicationContext();
+            CharSequence text = "Current GPA toast";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         } else if (id == R.id.nav_share) {
-
+            Context context = getApplicationContext();
+            CharSequence text = "Share Toast";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         } else if (id == R.id.nav_send) {
-
+            Context context = getApplicationContext();
+            CharSequence text = "Send Toast";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
