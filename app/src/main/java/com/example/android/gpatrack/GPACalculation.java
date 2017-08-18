@@ -1,7 +1,9 @@
 package com.example.android.gpatrack;
 
 /**
- * Created by Andy on 8/18/2017.
+ * Created by Andy on 8/18/2017. Basic gpa calculation class, stores total hours at a particular grade point
+ * use case is meant to be initially setting gradePoints (IE A B etc) then updating hours. Includes getter and setter
+ * for gradepoints as well, though I would expect to not actually use those.
  */
 
 public class GPACalculation {
@@ -17,6 +19,7 @@ public class GPACalculation {
         this.hours = hours;
         this.gradePoints= gradePoints;
     }
+
     /**
      * no existing gpa constructor
      */
@@ -35,9 +38,32 @@ public class GPACalculation {
     }
 
     /**
+     * getter for hours
+     * @return existing credit hours
+     */
+    public int getHours(){
+        return this.hours;
+    }
+
+    /**
+     * getter for grade points
+     */
+    public double getGradePoints() {
+        return this.gradePoints;
+    }
+
+    /**
+     * updates number of hours stored in GPACalculation
+     * @param hours hours to change by
+     */
+    public void setHours (int hours) {
+        this.hours+= hours;
+    }
+
+    /**
      * calculate raw points
-     * @param hours
-     * @param gradePoints
+     * @param hours hours at a particular gradepoint
+     * @param gradePoints grade 
      * @return
      */
     private double totalPoints(int hours, double gradePoints){
