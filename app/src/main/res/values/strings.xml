@@ -6,9 +6,14 @@
 
     <string name="action_settings">Settings</string>
 
+
+
+    <!-- Menu Item String -->
     <string name="add_new_class">Add New Class</string>
-
     <string name="add_new_semester">Add New Semester</string>
+    <string name="show_gpa_stats">Current GPA Stats</string>
 
-    <string name="show_gpa_stats">Current GPA</string>
+
+
+
 </resources>
