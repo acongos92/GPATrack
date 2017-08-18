@@ -1,5 +1,6 @@
 package com.example.android.gpatrack;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.android.gpatrack.GPACalculation;
@@ -21,6 +23,13 @@ import com.example.android.gpatrack.GPACalculation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Context mContext;
+
+    private Activity mActivity;
+
+    private PopupWindow mPopupWindow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +98,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_new_class) {
-            Context context = MainActivity.this;
-            Class dest = SelectSemester.class;
-            Intent intent = new Intent(context, dest);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, AddNewSemesterPopup.class));
         } else if (id == R.id.add_new_semester) {
             Context context = getApplicationContext();
             CharSequence text = "Add new semester toast";

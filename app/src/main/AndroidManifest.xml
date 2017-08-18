@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SelectSemester"></activity>
+        <activity android:name=".AddNewSemesterPopup"
+            android:theme="@style/AppTheme.CustomTheme">
+        </activity>
     </application>
 
 </manifest>
