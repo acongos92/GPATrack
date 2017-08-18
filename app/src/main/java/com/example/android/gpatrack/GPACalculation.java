@@ -34,6 +34,7 @@ public class GPACalculation {
      * @return cumulative gpa
      */
     public double calculateGPA(){
+        //avoid cancerous formatting :) 
         return totalPoints(this.hours,this.gradePoints)/this.hours;
     }
 
@@ -63,7 +64,7 @@ public class GPACalculation {
     /**
      * calculate raw points
      * @param hours hours at a particular gradepoint
-     * @param gradePoints grade 
+     * @param gradePoints grade
      * @return
      */
     private double totalPoints(int hours, double gradePoints){
