@@ -35,8 +35,12 @@ public class GPACalculation {
      * @return cumulative gpa
      */
     public double calculateGPA(){
-        //avoid cancerous formatting :)
-        return totalPoints(this.hours,this.gradePoints)/this.hours;
+        //avoid divide by 0
+        if(this.hours != 0) {
+            return totalPoints(this.hours, this.gradePoints) / this.hours;
+        }else{
+            return 0;
+        }
     }
 
     /**
@@ -54,12 +58,21 @@ public class GPACalculation {
         return this.gradePoints;
     }
 
+    public void setGradePoints(double points) {
+        this.gradePoints = points;
+    }
+
     /**
      * updates number of hours stored in GPACalculation
      * @param hours hours to change by
      */
     public void setHours (int hours) {
-        this.hours+= hours;
+        this.hours = hours;
+    }
+
+
+    public void addOrSubtractHours (int hours) {
+        this.hours += hours;
     }
 
     /**
