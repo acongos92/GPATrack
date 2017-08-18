@@ -19,13 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <activity
             android:name=".Add_New_Class"
             android:label="@string/title_activity_add__new__class"></activity>
-=======
+
         <activity android:name=".SelectSemester"></activity>
->>>>>>> origin/New-Intent
+
     </application>
 
 </manifest>
