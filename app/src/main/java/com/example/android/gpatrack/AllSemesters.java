@@ -27,7 +27,9 @@ public class AllSemesters extends AppCompatActivity
         setContentView(R.layout.activity_all_semesters);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //just commenting out fab for now, will likely use later
+        /*
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,6 +37,7 @@ public class AllSemesters extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
