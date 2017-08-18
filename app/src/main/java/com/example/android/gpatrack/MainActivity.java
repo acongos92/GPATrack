@@ -1,6 +1,7 @@
 package com.example.android.gpatrack;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,7 @@ import android.widget.Toast;
 import com.example.android.gpatrack.GPACalculation;
 
 
-public class AllSemesters extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -88,11 +89,10 @@ public class AllSemesters extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_new_class) {
-            Context context = getApplicationContext();
-            CharSequence text = "Add new class toast";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            Context context = MainActivity.this;
+            Class dest = SelectSemester.class;
+            Intent intent = new Intent(context, dest);
+            startActivity(intent);
         } else if (id == R.id.add_new_semester) {
             Context context = getApplicationContext();
             CharSequence text = "Add new semester toast";
