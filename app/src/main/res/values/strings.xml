@@ -6,17 +6,13 @@
 
     <string name="action_settings">Settings</string>
 
-<<<<<<< HEAD
-
-
     <!-- Menu Item String -->
     <string name="add_new_class">Add New Class</string>
     <string name="add_new_semester">Add New Semester</string>
     <string name="show_gpa_stats">Current GPA Stats</string>
 
-    <string name="app_name2">GPATrack</string>
 
-=======
+    <string name="app_name2">GPATrack</string>
+    
     <string name="NO_NAME">No Name Given</string>
->>>>>>> master
 </resources>
