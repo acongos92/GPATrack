@@ -24,12 +24,6 @@ import com.example.android.gpatrack.GPACalculation;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Context mContext;
-
-    private Activity mActivity;
-
-    private PopupWindow mPopupWindow;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,37 +90,32 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         if (id == R.id.add_new_class) {
             startActivity(new Intent(MainActivity.this, AddNewSemesterPopup.class));
+            //Pass in the drawer object to close the drawer once off this screen
         } else if (id == R.id.add_new_semester) {
-            Context context = getApplicationContext();
-            CharSequence text = "Add new semester toast";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            makeToast("Add new semester toast");
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.current_gpa) {
-            Context context = getApplicationContext();
-            CharSequence text = "Current GPA toast";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            makeToast("Current GPA toast");
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_share) {
-            Context context = getApplicationContext();
-            CharSequence text = "Share Toast";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            makeToast("Share Toast");
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_send) {
-            Context context = getApplicationContext();
-            CharSequence text = "Send Toast";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            makeToast("Send Toast");
+            drawer.closeDrawer(GravityCompat.START);
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void makeToast(String message){
+        Context context = getApplicationContext();
+        CharSequence text = message;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 }
