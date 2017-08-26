@@ -20,7 +20,7 @@ public class SemesterDatabaseHelper extends SQLiteOpenHelper {
                 ClassEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ClassEntry.CLASS_NAME + " TEXT NOT NULL, " +
                 ClassEntry.COLUMN_GRADE + " INTEGER NOT NULL, " +
-                ClassEntry.COLUMN_SEMESTER + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ClassEntry.COLUMN_SEMESTER + " INTEGER NOT NULL" +
                 "); ";
     }
 
