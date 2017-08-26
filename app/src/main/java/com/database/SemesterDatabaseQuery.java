@@ -42,12 +42,12 @@ public class SemesterDatabaseQuery {
 
     //private helpers
     private Cursor wholeDB() {
-        Cursor cursor = base.query(ClassEntry.TABLE_NAME,
 
+        return null;
     }
 
     private DatabaseDTO buildDTO() {
-
+        return new DatabaseDTO("wut" ,"wut", 10);
     }
 
 
