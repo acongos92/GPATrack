@@ -8,9 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.action.AddNewClass;
+import com.backing_code.AddNewClass;
 import com.constants.Constants;
-import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
 
