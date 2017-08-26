@@ -28,11 +28,9 @@ public class SemesterDatabaseQuery {
     }
 
 
-    //does not require writable database
-
     /**
-     *
-     * @return cursor containing just the semesters listed in a database
+     * adds a particular data transfer object to the database
+     * @param data data transfer object containing data to be removed from the database
      */
     public void addToDatabase (DatabaseDTO data){
         ContentValues cv = new ContentValues();
@@ -43,8 +41,14 @@ public class SemesterDatabaseQuery {
         base.insert(ClassEntry.TABLE_NAME, null, cv);
     }
 
+    /**
+     * removes a particular item from the database, currently uses only class name to determine
+     * which column is going to be deleted but should be able to add or remove based on any
+     * item in the data DTO
+     * @param data data transfer object containing data to be removed from the database
+     */
     public void removeFromDatabase (DatabaseDTO data) {
-
+        base.delete(ClassEntry.TABLE_NAME, ClassEntry.CLASS_NAME, new String[] {"=", data.getClassName(), null});
     }
 
     //private helpers
