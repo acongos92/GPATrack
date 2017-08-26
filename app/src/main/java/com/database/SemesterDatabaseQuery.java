@@ -3,6 +3,8 @@ package com.database;
 
 import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabase.ClassEntry;
+
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,7 +35,12 @@ public class SemesterDatabaseQuery {
      * @return cursor containing just the semesters listed in a database
      */
     public void addToDatabase (DatabaseDTO data){
-        
+        ContentValues cv = new ContentValues();
+
+        cv.put(SemesterDatabase.ClassEntry.CLASS_NAME, data.getClassName());
+        cv.put(ClassEntry.COLUMN_GRADE, data.getGrade());
+        cv.put(ClassEntry.COLUMN_SEMESTER,data.getSemester());
+        base.insert(ClassEntry.TABLE_NAME, null, cv);
     }
 
     public void removeFromDatabase (DatabaseDTO data) {

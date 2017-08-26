@@ -15,6 +15,15 @@ public class DatabaseDTO {
         this.className = className;
         this.grade = grade;
     }
+    public String getSemester(){
+        return this.semester;
+    }
+    public float getGrade(){
+        return this.grade;
+    }
+    public String getClassName(){
+        return this.className;
+    }
 
 
 }
