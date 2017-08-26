@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.add_new_class) {
             startActivity(new Intent(MainActivity.this, AddNewSemesterPopup.class));
-            //Pass in the drawer object to close the drawer once off this screen
         } else if (id == R.id.add_new_semester) {
             makeToast("Add new semester toast");
             drawer.closeDrawer(GravityCompat.START);

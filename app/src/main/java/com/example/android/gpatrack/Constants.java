@@ -17,5 +17,5 @@ public class Constants {
     public static final double C_MINUS = 1.70;
     public static final double D_PLUS = 1.30;
     public static final double D = 1.00;
-    private Logger LOGGER = Logger.getLogger("Application level logger");
+    public static final Logger LOGGER = Logger.getLogger("Application level logger");
 }
