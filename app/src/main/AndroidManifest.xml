@@ -25,12 +25,12 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".AddClassToSemester" />
+        <activity android:name="com.Activity.Drawers.gpatrack.AddClassToSemester" />
         <activity
             android:name=".AddToSemester"
             android:label="@string/title_activity_add_to_semester">
         </activity>
-        <activity android:name=".SelectSemester"></activity>
+        <activity android:name="com.Activity.Drawers.gpatrack.SelectSemester"></activity>
         <activity
             android:name=".AddNewSemesterPopup"
             android:theme="@style/AppTheme.CustomTheme">

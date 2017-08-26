@@ -1,4 +1,4 @@
-package com.example.android.gpatrack;
+package com.action;
 
 /**
  * Created by Andy on 8/18/2017. Basic gpa calculation class, stores total hours at a particular grade point

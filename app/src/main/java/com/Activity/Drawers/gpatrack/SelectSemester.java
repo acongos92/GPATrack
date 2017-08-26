@@ -1,7 +1,9 @@
-package com.example.android.gpatrack;
+package com.Activity.Drawers.gpatrack;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.android.gpatrack.R;
 
 public class SelectSemester extends AppCompatActivity {
 

@@ -1,8 +1,7 @@
-package com.example.android.gpatrack;
-import com.example.android.gpatrack.GPACalculation;
+package com.action;
 
 
-import com.example.android.gpatrack.Constants;
+import com.constants.Constants;
 
 import java.util.logging.Logger;
 

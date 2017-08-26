@@ -1,4 +1,4 @@
-package com.example.android.gpatrack;
+package com.constants;
 
 import java.util.logging.Logger;
 

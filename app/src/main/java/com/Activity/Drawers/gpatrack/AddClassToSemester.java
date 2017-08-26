@@ -1,7 +1,9 @@
-package com.example.android.gpatrack;
+package com.Activity.Drawers.gpatrack;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.android.gpatrack.R;
 
 public class AddClassToSemester extends AppCompatActivity {
 
