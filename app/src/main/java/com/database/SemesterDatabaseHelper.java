@@ -1,5 +1,6 @@
 package com.database;
 
+import com.database.SemesterDatabase.ClassEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -15,11 +16,11 @@ public class SemesterDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase){
-        final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " + SemesterDatabase.CLASS_NAME + " (" +
-                WaitlistEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                WaitlistEntry.COLUMN_GUEST_NAME + " TEXT NOT NULL, " +
-                WaitlistEntry.COLUMN_PARTY_SIZE + " INTEGER NOT NULL, " +
-                WaitlistEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+        final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " + ClassEntry.TABLE_NAME + " (" +
+                ClassEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                ClassEntry.CLASS_NAME + " TEXT NOT NULL, " +
+                ClassEntry.COLUMN_GRADE + " INTEGER NOT NULL, " +
+                ClassEntry.COLUMN_SEMESTER + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                 "); ";
     }
     @Override
