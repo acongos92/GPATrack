@@ -45,10 +45,6 @@ public class AddToSemester extends AppCompatActivity {
         mCreditHours = (EditText) findViewById(R.id.credit_hours);
         letterGrade = (EditText) findViewById(R.id.grade);
 
-
-
-
-
         Button addClass = (Button) findViewById(R.id.add_class_button);
         addClass.setOnClickListener(new OnClickListener() {
             @Override
