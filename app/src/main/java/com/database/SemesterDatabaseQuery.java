@@ -30,7 +30,7 @@ public class SemesterDatabaseQuery {
      * @return cursor containing just the semesters listed in a database
      */
     public void addToDatabase (DatabaseDTO data){
-
+        
     }
 
     public void removeFromDatabase (DatabaseDTO data) {
