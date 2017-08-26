@@ -89,6 +89,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_new_class) {
+
+
+
+
+
+
+
+
+
+
+
+
+
             Context context = MainActivity.this;
             Class dest = SelectSemester.class;
             Intent intent = new Intent(context, dest);

@@ -15,4 +15,19 @@
     <string name="menu">Menu</string>
 
     <string name="NO_NAME">No Name Given</string>
+    <string name="title_activity_add_to_semester">Add a New Class</string>
+
+    <!-- Strings related to class addition -->
+    <string name="prompt_class_name">Class Name</string>
+    <string name="prompt_credit_hours">Credit Hours</string>
+    <string name="action_add_class">Add Class</string>
+    <string name="prompt_grade">Input Letter Grade</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>
