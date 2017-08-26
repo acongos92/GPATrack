@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
-public class AddNewSemesterPopup extends Activity {
+public class SelectSemesterPopup extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.new_semester_menu);
+        setContentView(R.layout.select_semester);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
