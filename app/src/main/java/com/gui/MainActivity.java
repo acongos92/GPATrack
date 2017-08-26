@@ -1,4 +1,4 @@
-package com.example.android.gpatrack;
+package com.gui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.example.android.gpatrack.R;
 
 
 public class MainActivity extends AppCompatActivity

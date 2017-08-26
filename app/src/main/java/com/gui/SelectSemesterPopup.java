@@ -1,8 +1,10 @@
-package com.example.android.gpatrack;
+package com.gui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+
+import com.example.android.gpatrack.R;
 
 public class SelectSemesterPopup extends Activity {
 
