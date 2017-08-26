@@ -1,4 +1,4 @@
-package com.activity.Drawers.gpatrack;
+package com.Activity.Drawers.gpatrack;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
