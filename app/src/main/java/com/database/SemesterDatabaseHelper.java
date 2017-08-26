@@ -19,8 +19,8 @@ public class SemesterDatabaseHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " + ClassEntry.TABLE_NAME + " (" +
                 ClassEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ClassEntry.CLASS_NAME + " TEXT NOT NULL, " +
-                ClassEntry.COLUMN_GRADE + " INTEGER NOT NULL, " +
-                ClassEntry.COLUMN_SEMESTER + " INTEGER NOT NULL" +
+                ClassEntry.COLUMN_GRADE + " REAL NOT NULL, " +
+                ClassEntry.COLUMN_SEMESTER + " TEXT NOT NULL" +
                 "); ";
     }
 
