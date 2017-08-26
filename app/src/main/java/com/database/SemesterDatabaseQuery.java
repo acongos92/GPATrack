@@ -1,5 +1,26 @@
 package com.database;
 
+<<<<<<< HEAD
+public class SemesterDatabaseQuery {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
 import com.database.SemesterDatabase.ClassEntry;
 import android.content.Context;
 import android.database.Cursor;
@@ -46,6 +67,11 @@ public class SemesterDatabaseQuery {
     private DatabaseDTO buildDTO() {
 
     }
+>>>>>>> 55eadbbb73201464f1a895b6fda0ed7bc05571ec
 
 
 }
+
+
+
+
