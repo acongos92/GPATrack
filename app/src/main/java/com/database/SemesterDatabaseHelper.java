@@ -5,5 +5,5 @@ package com.database;
  */
 
 public class SemesterDatabaseHelper {
-    
+
 }
