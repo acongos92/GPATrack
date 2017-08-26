@@ -1,31 +1,13 @@
 package com.database;
 
-<<<<<<< HEAD
-public class SemesterDatabaseQuery {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
+import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabase.ClassEntry;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.backend_code.DatabaseDTO;
+
 
 /**
  * Created by selle on 8/26/2017.
@@ -67,7 +49,7 @@ public class SemesterDatabaseQuery {
     private DatabaseDTO buildDTO() {
 
     }
->>>>>>> 55eadbbb73201464f1a895b6fda0ed7bc05571ec
+
 
 
 }
