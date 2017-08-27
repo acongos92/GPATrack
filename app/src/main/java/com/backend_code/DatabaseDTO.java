@@ -8,12 +8,14 @@ package com.backend_code;
 public class DatabaseDTO {
     private String semester;
     private String className;
+    private int creditHours;
     private float grade;
 
-    public DatabaseDTO(String semester, String className, float grade){
+    public DatabaseDTO(String semester, String className, float grade, int creditHours){
         this.semester = semester;
         this.className = className;
         this.grade = grade;
+        this.creditHours = creditHours;
     }
     public String getSemester(){
         return this.semester;

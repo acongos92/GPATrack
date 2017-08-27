@@ -145,6 +145,9 @@ public class AddNewClass {
         //comment
         return this.numericGrade;
     }
+    public int getCreditHours(){
+        return this.creditHours;
+    }
     public double getClassGPA(){
         //comment
         //only including logging here because i expect to divide by 0 at some point

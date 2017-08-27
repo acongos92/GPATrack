@@ -87,7 +87,7 @@ public class AddToSemester extends AppCompatActivity {
 
     }
     private DatabaseDTO buildDTO(AddNewClass newClass){
-       return  new DatabaseDTO("temp", newClass.getClassName(),(float) newClass.getNumericGrade());
+       return  new DatabaseDTO("temp", newClass.getClassName(),(float) newClass.getNumericGrade(), newClass.getCreditHours());
     }
 
     private void makeToast(String message){
