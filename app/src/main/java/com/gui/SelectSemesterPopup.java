@@ -12,8 +12,10 @@ import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 import com.database.SemesterDatabaseQuery;
 
-public class SelectSemesterPopup extends Activity {
+import java.util.logging.Logger;
 
+public class SelectSemesterPopup extends Activity {
+    private static final Logger logger = Logger.getLogger("AddNewClass log");
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -28,7 +30,10 @@ public class SelectSemesterPopup extends Activity {
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
 
-        String [] array = SemesterDatabaseQuery.queryAllSemester();
+        SemesterDatabaseQuery sdq = new SemesterDatabaseQuery(this, false);
+        String [] array = sdq.queryAllSemester();
+        logger.info(array.toString());
+
 
         Button addClass = (Button) findViewById(R.id.tempButton);
         addClass.setOnClickListener(new View.OnClickListener() {
