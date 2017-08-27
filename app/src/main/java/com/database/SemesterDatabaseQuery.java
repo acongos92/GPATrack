@@ -16,9 +16,6 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 
-/**
- * Created by selle on 8/26/2017.
- */
 
 public class SemesterDatabaseQuery {
     private static final Logger logger = Logger.getLogger("Database_Logger");
@@ -75,11 +72,41 @@ public class SemesterDatabaseQuery {
      * Returns an array of strings that contain all the current semesters
      */
     public String[] queryAllSemester(){
-        logger.info("started query all semesters");
-        Cursor cursor = base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,null);
-        logger.info("end query all semesters");
-        return cursor.getColumnNames();
 
+        String selectQuery = "SELECT * FROM " + SemesterDatabase.DATABASE_NAME;
+        Cursor cursor = base.rawQuery(selectQuery, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+        do {
+            String butt = cursor.getString(0);
+
+        } while (cursor.moveToNext());
+
+        return null;
+
+    }
+
+    /**
+     *
+     * @return an integer stack containing all numeric grades
+     */
+    public float[] getAllGrades(){
+        Cursor cursor = wholeDB();
+        int numRows = cursor.getCount();
+
+        float[] grades = new float[numRows];
+        int index = cursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_GRADE);
+        cursor.moveToFirst();
+
+        for(int i = 0; i < numRows; i++) {
+            grades[i] = cursor.getFloat(index);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        return grades;
     }
 
 }
