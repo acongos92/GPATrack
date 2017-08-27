@@ -1,7 +1,7 @@
 package com.backend_code;
 
 /**
- * Created by Andy on 8/26/2017. data transfer object so dont have to deal with database stuff so
+ * Created by Andy on 8/26/2017. data transfer object so don't have to deal with database stuff so
  * much later on. Super over built
  */
 

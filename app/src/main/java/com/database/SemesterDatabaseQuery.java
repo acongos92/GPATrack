@@ -8,7 +8,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.backend_code.DatabaseDTO;
+
+import java.util.ArrayList;
 
 
 /**
@@ -61,6 +64,13 @@ public class SemesterDatabaseQuery {
         return new DatabaseDTO("wut" ,"wut", 10);
     }
 
+    /**
+     * Returns an array of strings that contain all the current semesters
+     */
+    public String[] queryAllSemester(){
+        Cursor cursor = base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,ClassEntry.CLASS_NAME);
+        return base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,ClassEntry.CLASS_NAME).getColumnNames();
+    }
 
 
 }
