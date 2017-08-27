@@ -4,6 +4,7 @@ package com.database;
 import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabase.ClassEntry;
 
+import com.constants.Constants;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.backend_code.DatabaseDTO;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
 /**
@@ -19,13 +21,18 @@ import java.util.ArrayList;
  */
 
 public class SemesterDatabaseQuery {
+    private static final Logger logger = Logger.getLogger("Database_Logger");
     SQLiteDatabase base;
     SemesterDatabaseHelper dBHelper;
     public SemesterDatabaseQuery(Context context , Boolean write) {
+        logger.info("start semesterDatabaseQuery constructor");
         dBHelper = new SemesterDatabaseHelper(context);
+
         if (write) {
+            logger.info("Start writable database constructor");
             base = dBHelper.getWritableDatabase();
         }else{
+            logger.info("Start readable database constructor");
             base = dBHelper.getReadableDatabase();
         }
     }
@@ -68,8 +75,10 @@ public class SemesterDatabaseQuery {
      * Returns an array of strings that contain all the current semesters
      */
     public String[] queryAllSemester(){
+        logger.info("started query all semesters");
         Cursor cursor = base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,ClassEntry.CLASS_NAME);
         return cursor.getColumnNames();
+        logger.info("end query all semesters");
     }
 
 }
