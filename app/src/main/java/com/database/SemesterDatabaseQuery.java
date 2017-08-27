@@ -80,11 +80,12 @@ public class SemesterDatabaseQuery {
         if (cursor != null){
             cursor.moveToFirst();
         }
-        do {
-            String butt = cursor.getString(0);
+        if (cursor.getCount() > 0){
+            do {
+                String butt = cursor.getString(0);
 
-        } while (cursor.moveToNext());
-
+            } while (cursor.moveToNext());
+        }
         return null;
 
     }
