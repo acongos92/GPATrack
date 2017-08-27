@@ -76,7 +76,7 @@ public class SemesterDatabaseQuery {
      */
     public String[] queryAllSemester(){
         logger.info("started query all semesters");
-        Cursor cursor = base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,ClassEntry.CLASS_NAME);
+        Cursor cursor = base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,null);
         logger.info("end query all semesters");
         return cursor.getColumnNames();
 
