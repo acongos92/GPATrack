@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.backend_code.AddNewClass;
 import com.constants.Constants;
+import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
@@ -35,9 +36,12 @@ public class AddToSemester extends AppCompatActivity {
     private EditText mCreditHours;
     private EditText letterGrade;
     private View mLoginFormView;
+    SemesterDatabaseQuery SDQ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //instantiate a database connection with this as context and true meaning writeable
+        SDQ = new SemesterDatabaseQuery(this, true);
         Logger logger = Constants.LOGGER;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_semester);
@@ -80,6 +84,10 @@ public class AddToSemester extends AppCompatActivity {
 
 
     }
+    private void buildDTO(AddNewClass newClass){
+
+    }
+
     private void makeToast(String message){
         Context context = getApplicationContext();
         CharSequence text = message;
