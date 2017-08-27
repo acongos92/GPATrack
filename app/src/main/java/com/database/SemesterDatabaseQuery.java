@@ -42,7 +42,7 @@ public class SemesterDatabaseQuery {
     public void addToDatabase (DatabaseDTO data){
         ContentValues cv = new ContentValues();
 
-        cv.put(SemesterDatabase.ClassEntry.CLASS_NAME, data.getClassName());
+        cv.put(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME, data.getClassName());
         cv.put(ClassEntry.COLUMN_GRADE, data.getGrade());
         cv.put(ClassEntry.COLUMN_SEMESTER,data.getSemester());
         base.insert(ClassEntry.TABLE_NAME, null, cv);
@@ -55,7 +55,7 @@ public class SemesterDatabaseQuery {
      * @param data data transfer object containing data to be removed from the database
      */
     public void removeFromDatabase (DatabaseDTO data) {
-        base.delete(ClassEntry.TABLE_NAME, ClassEntry.CLASS_NAME, new String[] {"=", data.getClassName(), null});
+        base.delete(ClassEntry.TABLE_NAME, ClassEntry.COLUMN_CLASS_NAME, new String[] {"=", data.getClassName(), null});
     }
 
     //private helpers
