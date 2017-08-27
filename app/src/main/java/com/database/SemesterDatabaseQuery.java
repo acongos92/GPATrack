@@ -62,7 +62,7 @@ public class SemesterDatabaseQuery {
     //private helpers
     private Cursor wholeDB() {
 
-        return base.query(SemesterDatabase.DATABASE_NAME, null,null,null,null,null,null,null);
+        return base.query(ClassEntry.TABLE_NAME, null,null,null,null,null,null,null);
     }
 
     private DatabaseDTO buildDTO() {

@@ -67,6 +67,7 @@ public class AddToSemester extends AppCompatActivity {
         String className = "temp";
         String creditHours = "1";
         String grade = "E";
+        int credits = 1;
         if (mClassName != null) {
              className = mClassName.getText().toString();
         }
