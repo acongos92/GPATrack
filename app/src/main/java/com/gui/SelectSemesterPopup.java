@@ -7,7 +7,10 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
+import com.backend_code.DatabaseDTO;
+import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
+import com.database.SemesterDatabaseQuery;
 
 public class SelectSemesterPopup extends Activity {
 
@@ -24,6 +27,8 @@ public class SelectSemesterPopup extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
+
+        String [] array = SemesterDatabaseQuery.queryAllSemester();
 
         Button addClass = (Button) findViewById(R.id.tempButton);
         addClass.setOnClickListener(new View.OnClickListener() {
