@@ -74,19 +74,20 @@ public class SemesterDatabaseQuery {
      */
     public String[] queryAllSemester(){
 
-        String selectQuery = "SELECT * FROM " + SemesterDatabase.DATABASE_NAME;
-        Cursor cursor = base.rawQuery(selectQuery, null);
+        Cursor cursor = wholeDB();
+        int numRows = cursor.getCount();
 
-        if (cursor != null){
-            cursor.moveToFirst();
-        }
-        if (cursor.getCount() > 0){
-            do {
-                String butt = cursor.getString(0);
+        String[] semesterNames = new String[numRows];
+        int index = cursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
+        cursor.moveToFirst();
 
-            } while (cursor.moveToNext());
+        for(int i = 0; i < numRows; i++) {
+            semesterNames[i] = cursor.getString(index);
+            cursor.moveToNext();
         }
-        return null;
+
+        cursor.close();
+        return semesterNames;
 
     }
 
