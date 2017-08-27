@@ -55,6 +55,9 @@ public class AddToSemester extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 addToClass();
+                mClassName.setText("");
+                mCreditHours.setText("");
+                letterGrade.setText("");
             }
         });
 
