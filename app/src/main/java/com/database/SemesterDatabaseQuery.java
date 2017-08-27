@@ -43,7 +43,7 @@ public class SemesterDatabaseQuery {
      * @param data data transfer object containing data to be removed from the database
      */
     public void addToDatabase(DatabaseDTO data) {
-        logger.info("start addToDatabase")
+        logger.info("start addToDatabase");
         ContentValues cv = new ContentValues();
 
         cv.put(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME, data.getClassName());
