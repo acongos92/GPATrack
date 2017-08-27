@@ -45,6 +45,7 @@ public class SemesterDatabaseQuery {
         cv.put(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME, data.getClassName());
         cv.put(ClassEntry.COLUMN_GRADE, data.getGrade());
         cv.put(ClassEntry.COLUMN_SEMESTER,data.getSemester());
+        cv.put(ClassEntry.COLUMN_CREDIT_HOURS, data.getSemester());
         base.insert(ClassEntry.TABLE_NAME, null, cv);
     }
 
@@ -65,7 +66,7 @@ public class SemesterDatabaseQuery {
     }
 
     private DatabaseDTO buildDTO() {
-        return new DatabaseDTO("wut" ,"wut", 10);
+        return new DatabaseDTO("wut" ,"wut", 10, 10);
     }
 
     /**
