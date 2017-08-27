@@ -30,9 +30,9 @@ public class SelectSemesterPopup extends Activity {
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
 
-        SemesterDatabaseQuery sdq = new SemesterDatabaseQuery(this, false);
-        String [] array = sdq.queryAllSemester();
-        logger.info(array.toString());
+        //SemesterDatabaseQuery sdq = new SemesterDatabaseQuery(this, false);
+        //String [] array = sdq.queryAllSemester();
+        //logger.info(array.toString());
 
 
         Button addClass = (Button) findViewById(R.id.tempButton);

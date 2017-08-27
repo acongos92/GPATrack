@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.backend_code.AddNewClass;
+import com.backend_code.DatabaseDTO;
 import com.constants.Constants;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
@@ -79,13 +80,14 @@ public class AddToSemester extends AppCompatActivity {
         int numericHours = Integer.parseInt(creditHours);
 
         AddNewClass course = new AddNewClass(className, numericHours, grade);
+        SDQ.addToDatabase(buildDTO(course));
         makeToast("Course Successfully Added");
 
 
 
     }
-    private void buildDTO(AddNewClass newClass){
-
+    private DatabaseDTO buildDTO(AddNewClass newClass){
+       return  new DatabaseDTO("temp", newClass.getClassName(),(float) newClass.getNumericGrade());
     }
 
     private void makeToast(String message){
