@@ -16,12 +16,12 @@ public class SemesterDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase){
-        final String SQL_CREATE_SEMESTER_TABLE = "CREATE TABLE " + ClassEntry.TABLE_NAME + " (" +
-                ClassEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                ClassEntry.CLASS_NAME + " TEXT NOT NULL, " +
-                ClassEntry.COLUMN_GRADE + " REAL NOT NULL, " +
+        final String SQL_CREATE_SEMESTER_TABLE = "CREATE TABLE " + ClassEntry.TABLE_NAME + "(" +
+                ClassEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                ClassEntry.CLASS_NAME + " TEXT NOT NULL , " +
+                ClassEntry.COLUMN_GRADE + " REAL NOT NULL , " +
                 ClassEntry.COLUMN_SEMESTER + " TEXT NOT NULL" +
-                "); ";
+                " );";
         sqLiteDatabase.execSQL(SQL_CREATE_SEMESTER_TABLE);
     }
 
