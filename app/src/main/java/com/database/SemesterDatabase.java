@@ -8,7 +8,8 @@ public class SemesterDatabase {
 
     public static final class ClassEntry implements BaseColumns{
         public static final String TABLE_NAME = DATABASE_NAME;
-        public static final String CLASS_NAME = "course";
+        public static final String COLUMN_CLASS_NAME = "course";
+        public static final String COLUMN_CREDIT_HOURS = "hours";
         public static final String COLUMN_GRADE = "grade";
         public static final String COLUMN_SEMESTER = "semester";
     }
