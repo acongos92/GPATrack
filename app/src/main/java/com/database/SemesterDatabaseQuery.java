@@ -69,7 +69,7 @@ public class SemesterDatabaseQuery {
      */
     public String[] queryAllSemester(){
         Cursor cursor = base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,ClassEntry.CLASS_NAME);
-        return base.query(ClassEntry.TABLE_NAME,null,null,null,null,null,null,ClassEntry.CLASS_NAME).getColumnNames();
+        return cursor.getColumnNames();
     }
 
 
