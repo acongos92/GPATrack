@@ -2,6 +2,8 @@ package com.gui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +14,8 @@ import android.widget.Button;
 
 import com.adapters.PopupSemesterAdapter;
 import com.backend_code.DatabaseDTO;
+import com.database.SemesterDatabase;
+import com.database.SemesterDatabaseHelper;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 import com.database.SemesterDatabaseQuery;
@@ -21,9 +25,9 @@ import java.util.logging.Logger;
 public class SelectSemesterPopup extends Activity {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
-    private static final int NUM_TO_LIST = 100;
     private PopupSemesterAdapter mPopupAdapter;
-    private RecyclerView mNumbersList;
+
+    private SQLiteDatabase base;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -39,16 +43,15 @@ public class SelectSemesterPopup extends Activity {
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
 
         //Recycler View
-        mNumbersList = (RecyclerView) findViewById(R.id.rv_numbers);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mNumbersList.setLayoutManager(layoutManager);
-        mNumbersList.setHasFixedSize(true);
-        mPopupAdapter = new PopupSemesterAdapter(NUM_TO_LIST);
-        mNumbersList.setAdapter(mPopupAdapter);
+        RecyclerView semesterRecyclerView;
+        semesterRecyclerView = (RecyclerView) this.findViewById(R.id.rv_numbers);
+        SemesterDatabaseHelper dbHelper = new SemesterDatabaseHelper(this);
+        base = dbHelper.getReadableDatabase();
+        semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Cursor cursor = getAllSemesters();
+        mPopupAdapter = new PopupSemesterAdapter(this, cursor);
+        semesterRecyclerView.setAdapter(mPopupAdapter);
 
-        SemesterDatabaseQuery sdq = new SemesterDatabaseQuery(this, false);
-        String [] array = sdq.queryAllSemester();
-        logger.info(array.toString());
 
 
         Button addClass = (Button) findViewById(R.id.tempButton);
@@ -59,6 +62,16 @@ public class SelectSemesterPopup extends Activity {
             }
         });
 
+    }
+
+    private Cursor getAllSemesters(){
+        return base.query(SemesterDatabase.ClassEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
     }
 
 

@@ -1,6 +1,7 @@
 package com.adapters;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,21 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
 
 public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.NumberViewHolder> {
 
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
 
-    private int mNumberItems;
+    private Context mContext;
+
+    private Cursor mCursor;
 
     /**
      * Constructor
      *
-     * @param num Number of items to display in list
+     * @param cursor Number of items to display in list
      */
-    public PopupSemesterAdapter(int num) {
-        mNumberItems = num;
+    public PopupSemesterAdapter(Context context, Cursor cursor) {
+        this.mContext = context;
+        this.mCursor = cursor;
     }
 
 
@@ -41,13 +46,16 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
 
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
-        Log.d(TAG, "#" + position);
-        holder.bind(position);
+        if (!mCursor.moveToPosition(position)){
+            return;
+        }
+        String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER));
+        holder.listItemNumberView.setText(name);
     }
 
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        return mCursor.getCount();
     }
 
 
