@@ -68,22 +68,21 @@ public class SemesterDatabaseQuery {
      * Returns an array of strings that contain all the current semesters
      */
     public String[] queryAllSemester() {
-        logger.info("start queryAllSemesters");
-
+        logger.info("start getAllClassNames");
         Cursor cursor = wholeDB();
         int numRows = cursor.getCount();
 
-        String[] semesterNames = new String[numRows];
-        int index = cursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
+        String[] names = new String[numRows];
+        int index = cursor.getColumnIndex(ClassEntry.COLUMN_SEMESTER);
         cursor.moveToFirst();
 
         for (int i = 0; i < numRows; i++) {
-            semesterNames[i] = cursor.getString(index);
+            names[i] = cursor.getString(index);
             cursor.moveToNext();
         }
 
         cursor.close();
-        return semesterNames;
+        return names;
 
     }
 
