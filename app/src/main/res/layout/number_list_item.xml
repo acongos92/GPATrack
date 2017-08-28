@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_item_number"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-        android:textSize="42sp"/>
+        android:textSize="24sp"/>
 
 </FrameLayout>
