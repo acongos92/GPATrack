@@ -23,17 +23,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name="com.gui.AddToSemester"
-            android:label="@string/title_activity_add_to_semester">
-        </activity>
+            android:label="@string/title_activity_add_to_semester"></activity>
         <activity
             android:name="com.gui.SelectSemesterPopup"
-            android:theme="@style/AppTheme.CustomTheme">
-        </activity>
-
+            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name="com.gui.DisplayGPA"
+            android:label="@string/title_activity_display_gp"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
