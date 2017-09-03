@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gui.AddToSemester">
 
-    <!-- Login progress -->
 
     <ScrollView
         android:id="@+id/add_class_form"
