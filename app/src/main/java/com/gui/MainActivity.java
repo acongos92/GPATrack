@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, DisplayGPA.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_share) {
-            makeToast("Share Toast");
+            makeToast("Share Feature Coming soon");
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_send) {
-            makeToast("Send Toast");
+            makeToast("Send Feature Coming soon");
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;

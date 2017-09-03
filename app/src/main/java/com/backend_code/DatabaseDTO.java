@@ -23,6 +23,7 @@ public class DatabaseDTO {
     public float getGrade(){
         return this.grade;
     }
+    public int getCreditHours() {return this.creditHours;}
     public String getClassName(){
         return this.className;
     }

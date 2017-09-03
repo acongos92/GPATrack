@@ -29,6 +29,10 @@ public class GPACalculation {
         this.gradePoints= 0;
     }
 
+    public void addPointsAndHours(int hours, double grade){
+        this.hours += hours;
+        this.gradePoints += grade * hours;
+    }
 
     /**
      * calculate cumulative gpa based on existing hours and grade points
@@ -37,7 +41,7 @@ public class GPACalculation {
     public double calculateGPA(){
         //avoid divide by 0
         if(this.hours != 0) {
-            return totalPoints(this.hours, this.gradePoints) / this.hours;
+            return this.gradePoints / this.hours;
         }else{
             return 0;
         }
