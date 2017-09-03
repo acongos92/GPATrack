@@ -2,12 +2,22 @@ package com.gui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
+import com.adapters.PopupSemesterAdapter;
 import com.backend_code.DatabaseDTO;
+import com.database.SemesterDatabase;
+import com.database.SemesterDatabaseHelper;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 import com.database.SemesterDatabaseQuery;
@@ -16,6 +26,12 @@ import java.util.logging.Logger;
 
 public class SelectSemesterPopup extends Activity {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
+
+    private PopupSemesterAdapter mPopupAdapter;
+
+    private SQLiteDatabase base;
+
+    private RecyclerView semesterRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -30,9 +46,21 @@ public class SelectSemesterPopup extends Activity {
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
 
-        SemesterDatabaseQuery sdq = new SemesterDatabaseQuery(this, false);
-        String [] array = sdq.queryAllSemester();
-        logger.info(array.toString());
+        /*
+         * Recycler view setup
+         */
+        //Setup the recycler view based on the id in the xml
+        semesterRecyclerView = (RecyclerView) this.findViewById(R.id.rv_numbers);
+        //Gets database ready and opens a readable connection
+        SemesterDatabaseHelper dbHelper = new SemesterDatabaseHelper(this);
+        base = dbHelper.getReadableDatabase();
+        // Sets the layout manager for the recycler view
+        semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Cursor cursor = getAllSemesters();
+        //Finishes setting up the adapter
+        mPopupAdapter = new PopupSemesterAdapter(this, cursor);
+        semesterRecyclerView.setAdapter(mPopupAdapter);
+
 
 
         Button addClass = (Button) findViewById(R.id.tempButton);
@@ -45,6 +73,22 @@ public class SelectSemesterPopup extends Activity {
 
     }
 
+    /**
+     * Method that returns all the semesters in a Cursor object the database MUST be open
+     * for this transaction to happen correctly.
+     *
+     *
+     * @return Cursor object that contains all the semesters
+     */
+    private Cursor getAllSemesters(){
+        return base.query(SemesterDatabase.ClassEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
+    }
 
 
 

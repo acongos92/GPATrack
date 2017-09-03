@@ -23,8 +23,6 @@ public class DisplayGPA extends AppCompatActivity {
 
     }
 
-    private float calculateGPA(Map<Float,Integer> map) {
 
-    }
 
 }
