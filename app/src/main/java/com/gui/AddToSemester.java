@@ -37,7 +37,6 @@ public class AddToSemester extends AppCompatActivity {
         //instantiate a database connection with this as context and true meaning writeable
         SDQ = new SemesterDatabaseQuery(this, true);
 
-        Logger logger = Constants.LOGGER;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_semester);
         mClassName = (EditText) findViewById(R.id.class_name);

@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             makeToast("Add new semester toast");
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.current_gpa) {
-            makeToast("Current GPA toast");
+            startActivity(new Intent(MainActivity.this, DisplayGPA.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_share) {
             makeToast("Share Toast");
