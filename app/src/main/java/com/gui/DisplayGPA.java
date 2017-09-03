@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.example.android.gpatrack.R;
 
+import java.util.Map;
+
 public class DisplayGPA extends AppCompatActivity {
 
     @Override
@@ -18,6 +20,10 @@ public class DisplayGPA extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+    }
+
+    private float calculateGPA(Map<Float,Integer> map) {
 
     }
 
