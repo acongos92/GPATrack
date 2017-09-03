@@ -45,7 +45,8 @@ public class DisplayGPA extends AppCompatActivity {
         }
         double gpa = calc.calculateGPA();
         CharSequence newText = (" " + Double.toString(gpa));
-        view.append(newText, 0,5);
+
+        view.append(newText, 0,newText.length());
 
 
     }
