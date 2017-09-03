@@ -19,30 +19,24 @@ import com.example.android.gpatrack.R;
 import java.util.logging.Logger;
 
 /**
- * screen toinput class name credit hours and grade data
+ * screen to input class name credit hours and grade data
  */
 public class AddToSemester extends AppCompatActivity {
 
-
-
-
-
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
 
 
     // UI references.
     private EditText mClassName;
     private EditText mCreditHours;
     private EditText letterGrade;
-    private View mLoginFormView;
+    private View mAddClassView;
     SemesterDatabaseQuery SDQ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //instantiate a database connection with this as context and true meaning writeable
         SDQ = new SemesterDatabaseQuery(this, true);
+
         Logger logger = Constants.LOGGER;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_semester);
@@ -61,7 +55,7 @@ public class AddToSemester extends AppCompatActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.add_class_form);
+        mAddClassView = findViewById(R.id.add_class_form);
 
     }
 
