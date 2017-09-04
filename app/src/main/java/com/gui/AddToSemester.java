@@ -63,6 +63,7 @@ public class AddToSemester extends AppCompatActivity {
         String className = "temp";
         String creditHours = "1";
         String grade = "E";
+        int numericHours = 0;
         int credits = 1;
         if (mClassName != null) {
              className = mClassName.getText().toString();
@@ -74,8 +75,9 @@ public class AddToSemester extends AppCompatActivity {
             grade = letterGrade.getText().toString();
 
         }
-        int numericHours = Integer.parseInt(creditHours);
-
+        if(creditHours.length() > 0) {
+            numericHours = Integer.parseInt(creditHours);
+        }
         AddNewClass course = new AddNewClass(className, numericHours, grade);
         SDQ.addToDatabase(buildDTO(course));
         makeToast("Course Successfully Added");
