@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.gpatrack">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -25,14 +29,14 @@
             android:label="@string/title_activity_add_to_semester"></activity>
         <activity
             android:name="com.gui.SelectSemesterPopup"
+            android:noHistory="true"
             android:theme="@style/AppTheme.CustomTheme"></activity>
         <activity
             android:name="com.gui.DisplayGPA"
             android:label="@string/title_activity_display_gp"
-            android:theme="@style/AppTheme.CustomTheme"
-            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
             >
-        </activity>
 
 
     </application>
