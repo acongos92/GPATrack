@@ -44,9 +44,13 @@ public class DisplayGPA extends AppCompatActivity {
             calc.addPointsAndHours((int)pair.getValue(),(float) pair.getKey());
         }
         double gpa = calc.calculateGPA();
-        CharSequence newText = (" " + Double.toString(gpa));
 
-        view.append(newText, 0, newText.length());
+        CharSequence newText = (" " + Double.toString(gpa));
+        if(newText.length() > 5){
+            view.append(newText, 0, 5);
+        }else {
+            view.append(newText, 0, newText.length());
+        }
 
 
     }
