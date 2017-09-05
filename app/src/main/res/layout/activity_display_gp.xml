@@ -4,19 +4,21 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.gui.DisplayGPA">
+    tools:context="com.gui.DisplayGPA"
+    android:paddingTop="10dp">
     <android.support.design.widget.AppBarLayout
         android:layout_height="30dp"
-        android:layout_width="fill_parent">
+        android:layout_width="fill_parent"
+        >
     <TextView
         android:id="@+id/cumulative_gpa_display"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:textColor="#FFF"
         android:text="@string/cumulative_gpa"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="20sp"
 
         />
     </android.support.design.widget.AppBarLayout>
@@ -30,7 +32,7 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/semesters"></android.support.v7.widget.RecyclerView>
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -39,6 +41,6 @@
 
 
         </LinearLayout>
-    >
+
 
 </LinearLayout>
