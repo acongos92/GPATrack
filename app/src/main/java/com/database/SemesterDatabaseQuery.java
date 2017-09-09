@@ -166,6 +166,10 @@ public class SemesterDatabaseQuery {
         return new DatabaseDTO("wut", "wut", 10, 10);
     }
 
+    public void closeConnection(){
+        this.dBHelper.close();
+        this.base.close();
+    }
 
 
 }

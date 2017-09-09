@@ -97,7 +97,12 @@ public class AddToSemester extends AppCompatActivity {
         toast.show();
     }
 
+    @Override
+    protected void onDestroy(){
+        SDQ.closeConnection();
+        super.onDestroy();
 
+    }
 
 
 
