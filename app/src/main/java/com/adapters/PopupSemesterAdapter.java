@@ -12,9 +12,23 @@ import android.widget.TextView;
 import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
 
+
+
+
+
+import java.util.logging.Logger;
+
 public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.NumberViewHolder> {
+    /**
+     * nested interface define how click listeners will behave within this view
+     */
+    public interface SemesterItemClickListener {
+        void onSemesterItemClick(int itemClicked);
+    }
 
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
+    private static final Logger LOGGER = Logger.getLogger("PopupSemesterAdapater Logger");
+    private SemesterItemClickListener clickListener;
 
     private Context mContext;
 
@@ -25,8 +39,9 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
      *
      * @param cursor Number of items to display in list
      */
-    public PopupSemesterAdapter(Context context, Cursor cursor) {
+    public PopupSemesterAdapter(Context context, Cursor cursor, SemesterItemClickListener listener) {
         this.mContext = context;
+        clickListener = listener;
         this.mCursor = cursor;
     }
 
@@ -59,18 +74,30 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     }
 
 
-    class NumberViewHolder extends RecyclerView.ViewHolder {
+    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
 
         TextView listItemNumberView;
+
         public NumberViewHolder(View itemView) {
             // COMPLETED (15) Within the constructor, call super(itemView) and then find listItemNumberView by ID
             super(itemView);
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+            itemView.setOnClickListener(this);
+
         }
 
         void bind(int listIndex) {
             listItemNumberView.setText(String.valueOf(listIndex));
+        }
+
+        @Override
+        public void onClick(View view){
+            LOGGER.info("RECYCLERVIEWCLICKLISTENER start onClick ");
+            int clickedPosition = getAdapterPosition();
+            LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
+            clickListener.onSemesterItemClick(clickedPosition);
         }
     }
 }
