@@ -52,6 +52,7 @@ public class AddToSemester extends AppCompatActivity {
                     mClassName.setText("");
                     mCreditHours.setText("");
                     letterGrade.setText("");
+                    makeToast("Class Successfully added");
                 } else {
                     makeToast("All Input fields are required");
                 }
@@ -72,6 +73,8 @@ public class AddToSemester extends AppCompatActivity {
         creditHours = mCreditHours.getText().toString();
         grade = letterGrade.getText().toString();
         int numericHours = Integer.parseInt(creditHours);
+        AddNewClass course = new AddNewClass(className, numericHours,grade);
+        SDQ.addToDatabase(buildDTO(course));
 
     }
     private DatabaseDTO buildDTO(AddNewClass newClass){
