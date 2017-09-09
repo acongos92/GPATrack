@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SemesterDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "sem.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public SemesterDatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

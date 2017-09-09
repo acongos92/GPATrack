@@ -62,6 +62,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         Cursor cursor = getAllSemesters();
         //Finishes setting up the adapter
         mPopupAdapter = new PopupSemesterAdapter(this, cursor, this);
+
         semesterRecyclerView.setAdapter(mPopupAdapter);
 
 
@@ -94,9 +95,9 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
     }
 
     @Override
-    public void onSemesterItemClick(int clickedItemIndex){
+    public void onSemesterItemClick(String semesterItemName){
         logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
-        makeToast("Item " + clickedItemIndex + " was clicked");
+        makeToast("Item " + semesterItemName + " was clicked");
     }
 
     private void makeToast(String message){
