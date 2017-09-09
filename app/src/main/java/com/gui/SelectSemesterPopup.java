@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +25,7 @@ import com.database.SemesterDatabaseQuery;
 
 import java.util.logging.Logger;
 
-public class SelectSemesterPopup extends Activity {
+public class SelectSemesterPopup extends AppCompatActivity {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
     private PopupSemesterAdapter mPopupAdapter;
@@ -88,6 +89,11 @@ public class SelectSemesterPopup extends Activity {
                 null,
                 null,
                 SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex){
+
     }
 
 

@@ -11,18 +11,18 @@ import android.widget.TextView;
 
 import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
-//TODO: implement recycler view at later date
+
 public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.NumberViewHolder> {
     /**
      * nested interface define how click listeners will behave within this view
      */
-    public interface SemesterItemClickListenter {
-        void onSemesterItemClick(String semesterNameClicked);
+    public interface SemesterItemClickListener {
+        void onSemesterItemClick(int itemClicked);
     }
 
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
 
-    private SemesterItemClickListenter clickListener;
+    private SemesterItemClickListener clickListener;
     private Context mContext;
 
     private Cursor mCursor;
@@ -32,8 +32,9 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
      *
      * @param cursor Number of items to display in list
      */
-    public PopupSemesterAdapter(Context context, Cursor cursor) {
+    public PopupSemesterAdapter(Context context, Cursor cursor, SemesterItemClickListener listener) {
         this.mContext = context;
+        clickListener = listener;
         this.mCursor = cursor;
     }
 
@@ -66,17 +67,27 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     }
 
 
-    class NumberViewHolder extends RecyclerView.ViewHolder {
+    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        private SemesterItemClickListener mOnClickListener;
         TextView listItemNumberView;
-        public NumberViewHolder(View itemView) {
+
+        public NumberViewHolder(View itemView, SemesterItemClickListener listener) {
             super(itemView);
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+            itemView.setOnClickListener(this);
+
         }
 
         void bind(int listIndex) {
             listItemNumberView.setText(String.valueOf(listIndex));
+        }
+
+        @Override
+        public void onClick(View view){
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onSemesterItemClick(clickedPosition);
         }
     }
 }
