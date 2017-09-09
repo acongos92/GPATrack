@@ -11,11 +11,18 @@ import android.widget.TextView;
 
 import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
-
+//TODO: implement recycler view at later date
 public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.NumberViewHolder> {
+    /**
+     * nested interface define how click listeners will behave within this view
+     */
+    public interface SemesterItemClickListenter {
+        void onSemesterItemClick(String semesterNameClicked);
+    }
 
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
 
+    private SemesterItemClickListenter clickListener;
     private Context mContext;
 
     private Cursor mCursor;
@@ -63,7 +70,6 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
 
         TextView listItemNumberView;
         public NumberViewHolder(View itemView) {
-            // COMPLETED (15) Within the constructor, call super(itemView) and then find listItemNumberView by ID
             super(itemView);
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
