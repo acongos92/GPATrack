@@ -35,8 +35,11 @@
             android:name="com.gui.DisplayGPA"
             android:label="@string/title_activity_display_gp"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-
-            >
+        >
+        <activity
+            android:name="com.gui.AddNewSemesterPopup"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
 
 
     </application>

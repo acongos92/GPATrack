@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, SelectSemesterPopup.class));
         } else if (id == R.id.add_new_semester) {
             makeToast("Add new semester toast");
-            drawer.closeDrawer(GravityCompat.START);
+            startActivity(new Intent(MainActivity.this, AddNewSemesterPopup.class));
         } else if (id == R.id.current_gpa) {
             startActivity(new Intent(MainActivity.this, DisplayGPA.class));
             drawer.closeDrawer(GravityCompat.START);

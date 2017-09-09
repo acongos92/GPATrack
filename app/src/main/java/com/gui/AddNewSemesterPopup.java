@@ -27,7 +27,7 @@ import com.database.SemesterDatabaseQuery;
 
 import java.util.logging.Logger;
 
-public class SelectSemesterPopup extends AppCompatActivity implements PopupSemesterAdapter.SemesterItemClickListener {
+public class AddNewSemesterPopup extends AppCompatActivity implements PopupSemesterAdapter.SemesterItemClickListener {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
     private PopupSemesterAdapter mPopupAdapter;
@@ -71,7 +71,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         addClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(SelectSemesterPopup.this, AddNewSemesterPopup.class));
+                startActivity(new Intent(AddNewSemesterPopup.this, AddToSemester.class));
             }
         });
 
@@ -97,7 +97,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
     @Override
     public void onSemesterItemClick(String semesterItemName){
         logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
-        Intent i = new Intent(SelectSemesterPopup.this, AddToSemester.class);
+        Intent i = new Intent(AddNewSemesterPopup.this, AddToSemester.class);
         //Gives semester name to the new activity as extra data
         i.putExtra("semName", semesterItemName);
         startActivity(i);
