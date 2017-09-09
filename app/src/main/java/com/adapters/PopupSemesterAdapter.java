@@ -95,6 +95,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
         public void onClick(View view){
             LOGGER.info("RECYCLERVIEWCLICKLISTENER start onClick ");
             int clickedPosition = getAdapterPosition();
+            LOGGER.info(view.toString());
             LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
             clickListener.onSemesterItemClick(clickedPosition);
         }

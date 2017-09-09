@@ -95,7 +95,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
     }
 
     @Override
-    public void onSemesterItemClick(String semesterItemName){
+    public void onSemesterItemClick(int semesterItemName){
         logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
         makeToast("Item " + semesterItemName + " was clicked");
     }
