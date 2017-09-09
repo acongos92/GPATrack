@@ -17,12 +17,13 @@ import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
 
-public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.NumberViewHolder> {
+public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.SemesterViewHolder> {
+
     /**
      * nested interface define how click listeners will behave within this view
      */
     public interface SemesterItemClickListener {
-        void onSemesterItemClick(int itemClicked);
+        void onSemesterItemClick(String semesterItemClicked);
     }
 
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
@@ -36,7 +37,8 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     /**
      * Constructor
      *
-     * @param cursor Number of items to display in list
+     * Click Listener is defined in interface and implemented at the end of the class
+     *
      */
     public PopupSemesterAdapter(Context context, Cursor cursor, SemesterItemClickListener listener) {
         this.mContext = context;
@@ -46,20 +48,21 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
 
 
     @Override
-    public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public SemesterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.semester_name_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
+
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
-        NumberViewHolder viewHolder = new NumberViewHolder(view);
+        SemesterViewHolder viewHolder = new SemesterViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(NumberViewHolder holder, int position) {
+    public void onBindViewHolder(SemesterViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)){
             return;
         }
@@ -73,13 +76,13 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     }
 
 
-    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class SemesterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
-        TextView listItemNumberView;
+        protected TextView listItemNumberView;
 
-        public NumberViewHolder(View itemView) {
-            // COMPLETED (15) Within the constructor, call super(itemView) and then find listItemNumberView by ID
+        public SemesterViewHolder(View itemView) {
+
             super(itemView);
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
@@ -95,8 +98,9 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
         public void onClick(View view){
             LOGGER.info("RECYCLERVIEWCLICKLISTENER start onClick ");
             int clickedPosition = getAdapterPosition();
+
             LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
-            clickListener.onSemesterItemClick(clickedPosition);
+            clickListener.onSemesterItemClick(String.valueOf(listItemNumberView.getText()));
         }
     }
 }
