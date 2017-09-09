@@ -99,7 +99,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
         Intent i = new Intent(SelectSemesterPopup.this, AddToSemester.class);
         //Gives semester name to the new activity as extra data
-        i.putExtra("Semester Item Name", semesterItemName);
+        i.putExtra("semName", semesterItemName);
         startActivity(i);
     }
 

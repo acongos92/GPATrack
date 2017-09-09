@@ -1,6 +1,7 @@
 package com.gui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
  * screen to input class name credit hours and grade data
  */
 public class AddToSemester extends AppCompatActivity {
-
+    private static final Logger logger = Logger.getLogger("AddNewClass log");
 
 
     // UI references.
@@ -69,16 +70,19 @@ public class AddToSemester extends AppCompatActivity {
         String creditHours;
         String grade;
 
+        Intent intent = getIntent();
+        String sem = intent.getExtras().getString("semName");
+        logger.info("NOTICE ME IN LOGCAT!!!!!!" + sem);
         className = mClassName.getText().toString();
         creditHours = mCreditHours.getText().toString();
         grade = letterGrade.getText().toString();
         int numericHours = Integer.parseInt(creditHours);
         AddNewClass course = new AddNewClass(className, numericHours,grade);
-        SDQ.addToDatabase(buildDTO(course));
+        SDQ.addToDatabase(buildDTO(course, sem));
 
     }
-    private DatabaseDTO buildDTO(AddNewClass newClass){
-       return  new DatabaseDTO("temp", newClass.getClassName(),(float) newClass.getNumericGrade(), newClass.getCreditHours());
+    private DatabaseDTO buildDTO(AddNewClass newClass, String sem){
+       return  new DatabaseDTO(sem, newClass.getClassName(),(float) newClass.getNumericGrade(), newClass.getCreditHours());
     }
 
     private void makeToast(String message){
