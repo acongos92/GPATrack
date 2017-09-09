@@ -5,4 +5,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#303F9F</color>
     <color name="divideColor">#F6FAFB</color>
+    <color name="onClick">#DCDCDC</color>
 </resources>
