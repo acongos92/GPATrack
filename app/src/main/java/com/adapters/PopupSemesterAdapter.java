@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
 
+import java.util.logging.Logger;
+
 public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdapter.NumberViewHolder> {
     /**
      * nested interface define how click listeners will behave within this view
@@ -21,7 +23,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     }
 
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
-
+    private static final Logger LOGGER = Logger.getLogger("PopupSemesterAdapater Logger");
     private SemesterItemClickListener clickListener;
     private Context mContext;
 
@@ -69,10 +71,10 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
 
     class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private SemesterItemClickListener mOnClickListener;
+
         TextView listItemNumberView;
 
-        public NumberViewHolder(View itemView, SemesterItemClickListener listener) {
+        public NumberViewHolder(View itemView) {
             super(itemView);
 
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
@@ -86,8 +88,10 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
 
         @Override
         public void onClick(View view){
+            LOGGER.info("RECYCLERVIEWCLICKLISTENER start onClick ");
             int clickedPosition = getAdapterPosition();
-            mOnClickListener.onSemesterItemClick(clickedPosition);
+            LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
+            clickListener.onSemesterItemClick(clickedPosition);
         }
     }
 }

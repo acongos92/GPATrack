@@ -1,6 +1,7 @@
 package com.gui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.adapters.PopupSemesterAdapter;
 import com.backend_code.DatabaseDTO;
@@ -25,7 +27,7 @@ import com.database.SemesterDatabaseQuery;
 
 import java.util.logging.Logger;
 
-public class SelectSemesterPopup extends AppCompatActivity {
+public class SelectSemesterPopup extends AppCompatActivity implements PopupSemesterAdapter.SemesterItemClickListener {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
     private PopupSemesterAdapter mPopupAdapter;
@@ -59,7 +61,7 @@ public class SelectSemesterPopup extends AppCompatActivity {
         semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         Cursor cursor = getAllSemesters();
         //Finishes setting up the adapter
-        mPopupAdapter = new PopupSemesterAdapter(this, cursor);
+        mPopupAdapter = new PopupSemesterAdapter(this, cursor, this);
         semesterRecyclerView.setAdapter(mPopupAdapter);
 
 
@@ -92,10 +94,18 @@ public class SelectSemesterPopup extends AppCompatActivity {
     }
 
     @Override
-    public void onListItemClick(int clickedItemIndex){
-
+    public void onSemesterItemClick(int clickedItemIndex){
+        logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
+        makeToast("Item " + clickedItemIndex + " was clicked");
     }
 
+    private void makeToast(String message){
+        Context context = getApplicationContext();
+        CharSequence text = message;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
 
 
 
