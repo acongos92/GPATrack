@@ -47,15 +47,10 @@ public class AddToSemester extends AppCompatActivity {
         addClass.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v){
-                if(isValidClass()) {
-                    addToClass();
-                    mClassName.setText("");
-                    mCreditHours.setText("");
-                    letterGrade.setText("");
-                }else {
-                    makeToast("All Input fields are required");
-                }
-
+                addToClass();
+                mClassName.setText("");
+                mCreditHours.setText("");
+                letterGrade.setText("");
             }
         });
 
@@ -70,17 +65,19 @@ public class AddToSemester extends AppCompatActivity {
         String grade = "E";
         int numericHours = 0;
         int credits = 1;
+        if (mClassName != null) {
+             className = mClassName.getText().toString();
+        }
+        if (mCreditHours != null) {
+             creditHours = mCreditHours.getText().toString();
+        }
+        if(letterGrade != null) {
+            grade = letterGrade.getText().toString();
 
-        className = mClassName.getText().toString();
-
-        creditHours = mCreditHours.getText().toString();
-
-
-        grade = letterGrade.getText().toString();
-
-
-        numericHours = Integer.parseInt(creditHours);
-
+        }
+        if(creditHours.length() > 0) {
+            numericHours = Integer.parseInt(creditHours);
+        }
         AddNewClass course = new AddNewClass(className, numericHours, grade);
         SDQ.addToDatabase(buildDTO(course));
         makeToast("Course Successfully Added");
@@ -98,20 +95,6 @@ public class AddToSemester extends AppCompatActivity {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-    }
-    private boolean isValidClass(){
-        boolean isGood = true;
-        if (mClassName.getText().length() < 1) {
-            isGood = false;
-        }
-        if (mCreditHours.getText().length() < 1) {
-            isGood = false;
-        }
-        if(letterGrade.getText().length() < 1) {
-            isGood = false;
-        }
-
-        return isGood;
     }
 
 
