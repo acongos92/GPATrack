@@ -36,10 +36,13 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
 
     private RecyclerView semesterRecyclerView;
 
+    private SemesterDatabaseQuery SDQ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        SDQ = new SemesterDatabaseQuery(this , false);
         setContentView(R.layout.select_semester);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -55,13 +58,12 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         //Setup the recycler view based on the id in the xml
         semesterRecyclerView = (RecyclerView) this.findViewById(R.id.rv_numbers);
         //Gets database ready and opens a readable connection
-        SemesterDatabaseHelper dbHelper = new SemesterDatabaseHelper(this);
-        base = dbHelper.getReadableDatabase();
+
         // Sets the layout manager for the recycler view
         semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Cursor cursor = getAllSemesters();
+
         //Finishes setting up the adapter
-        mPopupAdapter = new PopupSemesterAdapter(this, cursor, this);
+        mPopupAdapter = new PopupSemesterAdapter(this, SDQ.getUniqueSemesters(), this);
 
         semesterRecyclerView.setAdapter(mPopupAdapter);
 
@@ -77,22 +79,6 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
 
     }
 
-    /**
-     * Method that returns all the semesters in a Cursor object the database MUST be open
-     * for this transaction to happen correctly.
-     *
-     *
-     * @return Cursor object that contains all the semesters
-     */
-    private Cursor getAllSemesters(){
-        return base.query(SemesterDatabase.ClassEntry.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
-    }
 
     @Override
     public void onSemesterItemClick(String semesterItemName){

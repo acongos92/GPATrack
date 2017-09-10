@@ -154,6 +154,17 @@ public class SemesterDatabaseQuery {
         return gradesAndPoints;
     }
 
+    /**
+     *
+     * @return a cursor containing items only with unique semester names
+     */
+    public Cursor getUniqueSemesters(){
+        String[] colNames = new String[1];
+        colNames[0] = ClassEntry.COLUMN_SEMESTER;
+
+        return base.query(true, ClassEntry.TABLE_NAME, colNames, null, null, null, null, null, null);
+    }
+
 
     //private helpers
     private Cursor wholeDB() {
