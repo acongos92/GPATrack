@@ -26,12 +26,11 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
         void onSemesterItemClick(String semesterItemClicked);
     }
 
+    //adapter variable declarations
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
     private static final Logger LOGGER = Logger.getLogger("PopupSemesterAdapater Logger");
-    private SemesterItemClickListener clickListener;
-
     private Context mContext;
-
+    private SemesterItemClickListener clickListener;
     private Cursor mCursor;
 
     /**
@@ -47,6 +46,13 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     }
 
 
+    /**
+     * we override onCreateViewHolder in order to use our own view definitions in implementation
+     * by default implementation this would be incorrectly done
+     * @param viewGroup
+     * @param viewType
+     * @return
+     */
     @Override
     public SemesterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
@@ -61,6 +67,12 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
         return viewHolder;
     }
 
+    /**
+     * we override onBindViewHolder in order to properly assign data to be displayed in the view
+     * using the class cursor object
+     * @param holder the view holder we want to put data in
+     * @param position the position data will be assigned to in the scrollable list
+     */
     @Override
     public void onBindViewHolder(SemesterViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)){
@@ -70,17 +82,31 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
         holder.semesterNameItemView.setText(name);
     }
 
+    /**
+     * we override getItemCount again so we can use the class cursor object to properly define
+     * the total number of items in the list we plan to display
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mCursor.getCount();
     }
 
-
+    /**
+     * nested class implements the onClickListener so we can define what is done on clicks to items.
+     * this viewHolder essentially tracks each individual text view column which contains our data
+     * (so in this view holder its tracking just the semester names but could of course hold
+     *  multiple views)
+     */
     class SemesterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-
+        //define the views this viewHolder will be tracking
         protected TextView semesterNameItemView;
 
+        /**
+         * constructor for the view holder
+         * @param itemView the view which will hold an item of data in the recycler view (single row) 
+         */
         public SemesterViewHolder(View itemView) {
 
             super(itemView);
