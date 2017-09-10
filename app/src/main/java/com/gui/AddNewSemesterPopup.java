@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.adapters.PopupSemesterAdapter;
@@ -27,81 +28,53 @@ import com.database.SemesterDatabaseQuery;
 
 import java.util.logging.Logger;
 
-public class AddNewSemesterPopup extends AppCompatActivity implements PopupSemesterAdapter.SemesterItemClickListener {
-    private static final Logger logger = Logger.getLogger("AddNewClass log");
+public class AddNewSemesterPopup extends AppCompatActivity {
+    private static final Logger LOGGER = Logger.getLogger("AddNewSemester log");
 
-    private PopupSemesterAdapter mPopupAdapter;
-
-    private SQLiteDatabase base;
+    private EditText semesterCreationEditText;
 
     private RecyclerView semesterRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        LOGGER.info("Start AddNewSemesterPopup view");
+
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.select_semester);
+        setContentView(R.layout.create_new_semester);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
+
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
 
-        /*
-         * Recycler view setup
-         */
-        //Setup the recycler view based on the id in the xml
-        semesterRecyclerView = (RecyclerView) this.findViewById(R.id.rv_numbers);
-        //Gets database ready and opens a readable connection
-        SemesterDatabaseHelper dbHelper = new SemesterDatabaseHelper(this);
-        base = dbHelper.getReadableDatabase();
-        // Sets the layout manager for the recycler view
-        semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Cursor cursor = getAllSemesters();
-        //Finishes setting up the adapter
-        mPopupAdapter = new PopupSemesterAdapter(this, cursor, this);
-
-        semesterRecyclerView.setAdapter(mPopupAdapter);
+        semesterCreationEditText = (EditText) findViewById(R.id.new_semester_name_et);
 
 
 
-        Button addClass = (Button) findViewById(R.id.tempButton);
+
+
+        Button addClass = (Button) findViewById(R.id.create_new_semester_button);
         addClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(AddNewSemesterPopup.this, AddToSemester.class));
+                LOGGER.info("AddNewSemesterPopup create button clicked");
+                if(isValidSemesterName (semesterCreationEditText)) {
+                    Intent i = new Intent(AddNewSemesterPopup.this, AddToSemester.class);
+                    i.putExtra("semName", String.valueOf(semesterCreationEditText.getText()));
+                    startActivity(i);
+                }else {
+                    makeToast("Semester name was invalid");
+                }
             }
         });
 
     }
 
-    /**
-     * Method that returns all the semesters in a Cursor object the database MUST be open
-     * for this transaction to happen correctly.
-     *
-     *
-     * @return Cursor object that contains all the semesters
-     */
-    private Cursor getAllSemesters(){
-        return base.query(SemesterDatabase.ClassEntry.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                SemesterDatabase.ClassEntry.COLUMN_SEMESTER);
-    }
 
-    @Override
-    public void onSemesterItemClick(String semesterItemName){
-        logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
-        Intent i = new Intent(AddNewSemesterPopup.this, AddToSemester.class);
-        //Gives semester name to the new activity as extra data
-        i.putExtra("semName", semesterItemName);
-        startActivity(i);
-    }
 
     private void makeToast(String message){
         Context context = getApplicationContext();
@@ -109,6 +82,10 @@ public class AddNewSemesterPopup extends AppCompatActivity implements PopupSemes
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
+
+    private boolean isValidSemesterName(EditText et) {
+        return et.getText().length() > 0;
     }
 
 
