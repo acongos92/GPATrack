@@ -11,7 +11,7 @@
         android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/tv_item_number"
+        android:id="@+id/tv_semester_name"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:textSize="24sp"
         />

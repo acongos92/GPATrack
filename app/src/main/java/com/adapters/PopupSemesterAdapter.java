@@ -67,7 +67,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
             return;
         }
         String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER));
-        holder.listItemNumberView.setText(name);
+        holder.semesterNameItemView.setText(name);
     }
 
     @Override
@@ -79,20 +79,17 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     class SemesterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
-        protected TextView listItemNumberView;
+        protected TextView semesterNameItemView;
 
         public SemesterViewHolder(View itemView) {
 
             super(itemView);
 
-            listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+            semesterNameItemView = (TextView) itemView.findViewById(R.id.tv_semester_name);
             itemView.setOnClickListener(this);
 
         }
 
-        void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
-        }
 
         @Override
         public void onClick(View view){
@@ -100,7 +97,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
             int clickedPosition = getAdapterPosition();
 
             LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
-            clickListener.onSemesterItemClick(String.valueOf(listItemNumberView.getText()));
+            clickListener.onSemesterItemClick(String.valueOf(semesterNameItemView.getText()));
         }
     }
 }
