@@ -11,7 +11,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.backend_code.DatabaseDTO;
+import com.backend_code.GPACalculation;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -70,6 +76,7 @@ public class SemesterDatabaseQuery {
     public String[] queryAllSemester() {
         logger.info("start getAllClassNames");
         Cursor cursor = wholeDB();
+
         int numRows = cursor.getCount();
 
         String[] names = new String[numRows];
@@ -159,10 +166,36 @@ public class SemesterDatabaseQuery {
      * @return a cursor containing items only with unique semester names
      */
     public Cursor getUniqueSemesters(){
+        logger.info("Start getUniqueSemesters");
         String[] colNames = new String[1];
         colNames[0] = ClassEntry.COLUMN_SEMESTER;
 
         return base.query(true, ClassEntry.TABLE_NAME, colNames, null, null, null, null, null, null);
+    }
+
+    public ArrayList<GPACalculation> getAllSemesterNamesAndGPA(){
+        logger.info("Start getAllSemesterNamesAndGpa");
+        ArrayDeque<GPACalculation> gpas = new ArrayDeque<GPACalculation>();
+        Cursor cursor = alphaSortedSemesters();
+        Map<String, String> isExists = new HashMap<String, String>();
+
+        int semesterNameColumn  = cursor.getColumnIndex(ClassEntry.COLUMN_SEMESTER);
+        int gradeColumn = cursor.getColumnIndex(ClassEntry.COLUMN_GRADE);
+        int creditHoursColumn = cursor.getColumnIndex(ClassEntry.COLUMN_CREDIT_HOURS);
+
+        cursor.moveToFirst();
+        int numRows = cursor.getCount();
+        for (int i = 0; i < numRows; i++) {
+            if (isExists.containsKey(cursor.getString(semesterNameColumn))){
+
+                gpas.peekLast().addPointsAndHours(cursor.getInt(creditHoursColumn), cursor.getDouble(gradeColumn));
+            }else {
+                isExists.put(cursor.getString(semesterNameColumn), null);
+                gpas.addLast(new GPACalculation(cursor.getInt(creditHoursColumn), cursor.getDouble(gradeColumn)));
+                gpas.peekLast().setSemesterOrClassName(cursor.getString(semesterNameColumn));
+            }
+        }
+        return new ArrayList<GPACalculation>(gpas);
     }
 
 
@@ -171,6 +204,15 @@ public class SemesterDatabaseQuery {
         logger.info("start wholeDB");
 
         return base.query(ClassEntry.TABLE_NAME, null, null, null, null, null, null, null);
+    }
+
+    private Cursor alphaSortedSemesters(){
+        String[] colNames = new String[3];
+        colNames[0] = ClassEntry.COLUMN_SEMESTER;
+        colNames[1] = ClassEntry.COLUMN_GRADE;
+        colNames[2] = ClassEntry.COLUMN_CREDIT_HOURS;
+        //gets a cursor containing all semester names and grades sorted in ascending order by semester name
+        return base.query(false, ClassEntry.TABLE_NAME, colNames, null, null, null, null, ClassEntry.COLUMN_SEMESTER, null);
     }
 
     private DatabaseDTO buildReturnDTO() {

@@ -105,7 +105,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
 
         /**
          * constructor for the view holder
-         * @param itemView the view which will hold an item of data in the recycler view (single row) 
+         * @param itemView the view which will hold an item of data in the recycler view (single row)
          */
         public SemesterViewHolder(View itemView) {
 

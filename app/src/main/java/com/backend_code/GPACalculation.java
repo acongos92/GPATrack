@@ -9,6 +9,7 @@ package com.backend_code;
 public class GPACalculation {
     private int hours;
     private double gradePoints;
+    private String semesterOrClassName;
 
 
     /**
@@ -46,26 +47,6 @@ public class GPACalculation {
             return 0;
         }
     }
-
-    /**
-     * getter for hours
-     * @return existing credit hours
-     */
-    public int getHours(){
-        return this.hours;
-    }
-
-    /**
-     * getter for grade points
-     */
-    public double getGradePoints() {
-        return this.gradePoints;
-    }
-
-    public void setGradePoints(double points) {
-        this.gradePoints = points;
-    }
-
     /**
      * updates number of hours stored in GPACalculation
      * @param hours hours to change by
@@ -74,7 +55,25 @@ public class GPACalculation {
         this.hours = hours;
     }
 
+    //public getters and setters
+    public int getHours(){
+        return this.hours;
+    }
 
+    public double getGradePoints() {
+        return this.gradePoints;
+    }
+
+    public void setGradePoints(double points) {
+        this.gradePoints = points;
+    }
+
+    public void setSemesterOrClassName (String name){
+        this.semesterOrClassName = name;
+    }
+    public String getSemesterOrClassName(){
+        return this.semesterOrClassName;
+    }
     public void addOrSubtractHours (int hours) {
         this.hours += hours;
     }
