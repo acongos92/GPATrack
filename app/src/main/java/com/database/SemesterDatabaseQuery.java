@@ -194,6 +194,7 @@ public class SemesterDatabaseQuery {
                 gpas.peekLast().setSemesterOrClassName(cursor.getString(semesterNameColumn));
             }
             second = first;
+            cursor.moveToNext();
         }
         return new ArrayList<GPACalculation>(gpas);
     }

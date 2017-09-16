@@ -59,8 +59,8 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
     @Override
     public DisplaySemesterGPAAdapter.SemesterAndGPAViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        //TODO: needs to get the semester name and gpa view (not built yet)
-        int layoutIdForListItem = R.layout.semester_name_list_item;
+
+        int layoutIdForListItem = R.layout.homescreen_recycler_view_content;
         LayoutInflater inflater = LayoutInflater.from(context);
 
         boolean shouldAttachToParentImmediately = false;
@@ -79,14 +79,14 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
      */
     @Override
     public void onBindViewHolder(DisplaySemesterGPAAdapter.SemesterAndGPAViewHolder holder, int position) {
-        if (!(semestersAndGPA.size() < position)){
+        LOGGER.info("DisplaySemesterGPAAdapter start onBindViewHolder");
+        if ((semestersAndGPA.size() < position)){
             return;
         }
         String name = semestersAndGPA.get(position).getSemesterOrClassName();
-        LOGGER.info("DISPLAYSEMESTERGPAADAPTER: attempting to grade grade as string");
         double gpa = semestersAndGPA.get(position).calculateGPA();
-        holder.semesterNameAndGpaNameView.setText(name);
-        holder.semesterNameAndGpaGPAview.setText(Double.toString(gpa));
+        holder.semesterNameAndGpaNameView.append(name);
+        holder.semesterNameAndGpaGPAview.append(Double.toString(gpa));
     }
 
     /**
