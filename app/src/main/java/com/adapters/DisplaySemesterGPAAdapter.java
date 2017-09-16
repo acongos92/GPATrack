@@ -85,8 +85,14 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
         }
         String name = semestersAndGPA.get(position).getSemesterOrClassName();
         double gpa = semestersAndGPA.get(position).calculateGPA();
+        String gpas = Double.toString(gpa);
         holder.semesterNameAndGpaNameView.append(name);
-        holder.semesterNameAndGpaGPAview.append(Double.toString(gpa));
+        //control display of gpa digits
+        if(gpas.length() > 4){
+            holder.semesterNameAndGpaGPAview.append(gpas.substring(0,4));
+        }else {
+            holder.semesterNameAndGpaGPAview.append(gpas);
+        }
     }
 
     /**

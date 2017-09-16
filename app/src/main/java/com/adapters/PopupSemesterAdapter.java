@@ -79,6 +79,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
             return;
         }
         String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER));
+
         holder.semesterNameItemView.setText(name);
     }
 
