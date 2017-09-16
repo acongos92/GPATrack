@@ -42,9 +42,9 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
      * Click Listener is defined in interface and implemented at the end of the class
      *
      */
-    public DisplaySemesterGPAAdapter(Context context, List<GPACalculation> list, PopupSemesterAdapter.SemesterItemClickListener listener) {
+    public DisplaySemesterGPAAdapter(Context context, List<GPACalculation> list) {
         this.mContext = context;
-        clickListener = listener;
+
         this.semestersAndGPA = list;
     }
 
@@ -82,11 +82,11 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
         if (!(semestersAndGPA.size() < position)){
             return;
         }
-        //String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER));
+        String name = semestersAndGPA.get(position).getSemesterOrClassName();
         LOGGER.info("DISPLAYSEMESTERGPAADAPTER: attempting to grade grade as string");
-       // String gpa = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_GRADE));
-       // holder.semesterNameAndGpaNameView.setText(name);
-       // holder.semesterNameAndGpaGPAview.setText(gpa);
+        double gpa = semestersAndGPA.get(position).calculateGPA();
+        holder.semesterNameAndGpaNameView.setText(name);
+        holder.semesterNameAndGpaGPAview.setText(Double.toString(gpa));
     }
 
     /**
@@ -118,9 +118,9 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
         public SemesterAndGPAViewHolder(View itemView) {
 
             super(itemView);
-            //TODO: need to actually make these views
-            //semesterNameAndGpaNameView = (TextView) itemView.findViewById(R.id.tv_semester_and_gpa_name);
-            //semesterNameAndGpaGPAview = (TextView) itemView.findViewById(R.id.tv_semester_and_gpa_gpa);
+
+            semesterNameAndGpaNameView = (TextView) itemView.findViewById(R.id.tv_semester_name_display);
+            semesterNameAndGpaGPAview = (TextView) itemView.findViewById(R.id.tv_semester_grade_point);
             itemView.setOnClickListener(this);
 
         }

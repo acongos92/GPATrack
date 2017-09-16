@@ -8,17 +8,31 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.adapters.DisplaySemesterGPAAdapter;
+import com.adapters.PopupSemesterAdapter;
+import com.backend_code.GPACalculation;
+import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private RecyclerView homeScreenRecylcerView;
+
+    private SemesterDatabaseQuery SDQ;
+
+    private DisplaySemesterGPAAdapter recylcerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,25 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        //setup database connection and grab required list from the database
+
+        SDQ = new SemesterDatabaseQuery (this , false);
+        List<GPACalculation> gpaCalcs = new LinkedList<>();
+        gpaCalcs  = SDQ.getAllSemesterNamesAndGPA();
+
+        /*
+         * Recycler view setup
+         */
+        //Setup the recycler view based on the id in the xml
+        homeScreenRecylcerView = (RecyclerView) this.findViewById(R.id.rv_homeScreen);
+
+        // Sets the layout manager for the recycler view
+        homeScreenRecylcerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Finishes setting up the adapter
+        recylcerViewAdapter = new DisplaySemesterGPAAdapter(this, gpaCalcs);
+
+        homeScreenRecylcerView.setAdapter(recylcerViewAdapter);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

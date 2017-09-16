@@ -9,7 +9,7 @@
     tools:showIn="@layout/app_bar_all_semesters">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_numbers"
+        android:id="@+id/rv_homeScreen"
         android:background="#ECEFF1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
