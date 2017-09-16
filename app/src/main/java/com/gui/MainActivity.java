@@ -137,6 +137,14 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+
+    }
+
     private void makeToast(String message){
         Context context = getApplicationContext();
         CharSequence text = message;
