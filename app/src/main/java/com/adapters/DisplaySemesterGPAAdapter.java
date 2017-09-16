@@ -33,7 +33,7 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
     private static final Logger LOGGER = Logger.getLogger("DisplaySemesterGPAAdapter Logger");
     private Context mContext;
     private List<GPACalculation> semestersAndGPA;
-    private PopupSemesterAdapter.SemesterItemClickListener clickListener;
+    private DisplaySemesterGPAAdapter.DisplaySemesterGPAClickListener clickListener;
 
 
     /**
@@ -42,9 +42,9 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
      * Click Listener is defined in interface and implemented at the end of the class
      *
      */
-    public DisplaySemesterGPAAdapter(Context context, List<GPACalculation> list) {
+    public DisplaySemesterGPAAdapter(Context context, List<GPACalculation> list, DisplaySemesterGPAClickListener listener) {
         this.mContext = context;
-
+        this.clickListener = listener;
         this.semestersAndGPA = list;
     }
 
@@ -134,12 +134,12 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
 
         @Override
         public void onClick(View view){
-            //TODO: this will still work here just want the semester name for intent purpose
+
             LOGGER.info("RECYCLERVIEWCLICKLISTENER start onClick ");
             int clickedPosition = getAdapterPosition();
 
             LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
-            clickListener.onSemesterItemClick(String.valueOf(semesterNameAndGpaNameView.getText()));
+            clickListener.onSemesterGPAClick(String.valueOf(semesterNameAndGpaNameView.getText()));
         }
     }
 }
