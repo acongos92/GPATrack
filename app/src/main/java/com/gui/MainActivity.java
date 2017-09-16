@@ -23,16 +23,19 @@ import com.example.android.gpatrack.R;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DisplaySemesterGPAAdapter.DisplaySemesterGPAClickListener{
 
     private RecyclerView homeScreenRecylcerView;
 
     private SemesterDatabaseQuery SDQ;
 
     private DisplaySemesterGPAAdapter recylcerViewAdapter;
+
+    private Logger logger = Logger.getLogger("MainActivity logger");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         homeScreenRecylcerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Finishes setting up the adapter
-        recylcerViewAdapter = new DisplaySemesterGPAAdapter(this, gpaCalcs);
+        recylcerViewAdapter = new DisplaySemesterGPAAdapter(this, gpaCalcs, this);
 
         homeScreenRecylcerView.setAdapter(recylcerViewAdapter);
 
@@ -135,6 +138,12 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    @Override
+    public void onSemesterGPAClick(String semesterItemName){
+        logger.info("MAINACTIVITY start onSemesterItemClick");
+        makeToast(semesterItemName + " was clicked");
     }
 
     @Override
