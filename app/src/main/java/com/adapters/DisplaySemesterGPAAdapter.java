@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-/**
- * Created by Andy on 9/10/2017.
- */
-
 public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemesterGPAAdapter.SemesterAndGPAViewHolder>{
     /**
      * nested interface define how click listeners will behave within this view
