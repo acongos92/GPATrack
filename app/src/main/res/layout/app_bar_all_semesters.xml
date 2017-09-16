@@ -20,7 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_all_semesters" />
+    <include layout="@layout/homescreen_content" />
 
 
 
