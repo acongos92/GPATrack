@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.backend_code.AddNewClass;
 import com.backend_code.DatabaseDTO;
+import com.backend_code.GPACalculation;
 import com.constants.Constants;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -59,7 +61,7 @@ public class AddToSemester extends AppCompatActivity {
                 }
             }
         });
-
+        List<GPACalculation> testList = SDQ.getAllSemesterNamesAndGPA();
         mAddClassView = findViewById(R.id.add_class_form);
 
     }

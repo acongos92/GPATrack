@@ -119,8 +119,8 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
 
             super(itemView);
             //TODO: need to actually make these views
-            //semesterNameAndGpaNameView = (TextView) itemView.findViewById(R.id.tv_semester_and_gpa_name);
-            //semesterNameAndGpaGPAview = (TextView) itemView.findViewById(R.id.tv_semester_and_gpa_gpa);
+            semesterNameAndGpaNameView = (TextView) itemView.findViewById(R.id.tv_semester_and_gpa_name);
+            semesterNameAndGpaGPAview = (TextView) itemView.findViewById(R.id.tv_semester_and_gpa_gpa);
             itemView.setOnClickListener(this);
 
         }

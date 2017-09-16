@@ -177,8 +177,7 @@ public class SemesterDatabaseQuery {
         logger.info("Start getAllSemesterNamesAndGpa");
         ArrayDeque<GPACalculation> gpas = new ArrayDeque<GPACalculation>();
         Cursor cursor = alphaSortedSemesters();
-        Map<String, String> isExists = new HashMap<String, String>();
-
+        String second = "";
         int semesterNameColumn  = cursor.getColumnIndex(ClassEntry.COLUMN_SEMESTER);
         int gradeColumn = cursor.getColumnIndex(ClassEntry.COLUMN_GRADE);
         int creditHoursColumn = cursor.getColumnIndex(ClassEntry.COLUMN_CREDIT_HOURS);
@@ -186,14 +185,15 @@ public class SemesterDatabaseQuery {
         cursor.moveToFirst();
         int numRows = cursor.getCount();
         for (int i = 0; i < numRows; i++) {
-            if (isExists.containsKey(cursor.getString(semesterNameColumn))){
-
+            //garunteed an order in this cursor object so use the string comparisson to detect change
+            String first = cursor.getString(semesterNameColumn);
+            if (first.equals(second)){
                 gpas.peekLast().addPointsAndHours(cursor.getInt(creditHoursColumn), cursor.getDouble(gradeColumn));
             }else {
-                isExists.put(cursor.getString(semesterNameColumn), null);
                 gpas.addLast(new GPACalculation(cursor.getInt(creditHoursColumn), cursor.getDouble(gradeColumn)));
                 gpas.peekLast().setSemesterOrClassName(cursor.getString(semesterNameColumn));
             }
+            second = first;
         }
         return new ArrayList<GPACalculation>(gpas);
     }
