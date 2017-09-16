@@ -68,6 +68,7 @@ public class AddNewSemesterPopup extends AppCompatActivity {
                     startActivity(i);
                 }else {
                     makeToast("Semester name was invalid");
+                    semesterCreationEditText.setText("");
                 }
             }
         });
@@ -85,7 +86,7 @@ public class AddNewSemesterPopup extends AppCompatActivity {
     }
 
     private boolean isValidSemesterName(EditText et) {
-        return et.getText().length() > 0;
+        return (et.getText().length() > 0) && (et.getText().length() < 20);
     }
 
 
