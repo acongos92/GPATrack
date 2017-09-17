@@ -43,7 +43,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
         SDQ = new SemesterDatabaseQuery(this , false);
         setContentView(R.layout.select_semester);
-        Cursor c = SDQ.getAllClassesInASemesters("oldgreg");
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -51,6 +51,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
         Intent intent = getIntent();
+
         /*
          * Recycler view setup
          */
