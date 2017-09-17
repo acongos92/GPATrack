@@ -75,8 +75,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     }
 
     @Override
-    public void onSemesterItemClick(String semesterItemName){
-        logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
+    public void onClassItemClick(String semesterItemName){
+        logger.info("DisplayIndividualSemester start onSemesterItemClick");
         Intent i = new Intent(DisplayIndivudalSemester.this, AddToSemester.class);
         //Gives semester name to the new activity as extra data
         i.putExtra("semName", semesterItemName);
