@@ -2,6 +2,7 @@ package com.gui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
-    private DisplayIndividualSemesterAdapter mPopupAdapter;
+    private DisplayIndividualSemesterAdapter displaySemesterAdapter;
 
     private SQLiteDatabase base;
 
@@ -42,14 +43,14 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
         SDQ = new SemesterDatabaseQuery(this , false);
         setContentView(R.layout.select_semester);
-
+        Cursor c = SDQ.getAllClassesInASemesters("oldgreg");
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
-
+        Intent intent = getIntent();
         /*
          * Recycler view setup
          */
@@ -61,9 +62,9 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Finishes setting up the adapter
-        mPopupAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getUniqueSemesters(), this);
+        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getAllClassesInASemesters(intent.getExtras().getString("semName")) , this);
 
-        semesterRecyclerView.setAdapter(mPopupAdapter);
+        semesterRecyclerView.setAdapter(displaySemesterAdapter);
 
         Button addClass = (Button) findViewById(R.id.tempButton);
         addClass.setOnClickListener(new View.OnClickListener() {

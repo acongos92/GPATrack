@@ -135,7 +135,7 @@ public class SemesterDatabaseQuery {
     }
 
     /**
-     *
+     * think this is dead code?
      * @return map containing all credit hours earned at a particular grade point
      */
     public Map<Float, Integer> getCreditHoursAndGrades(){
@@ -171,6 +171,18 @@ public class SemesterDatabaseQuery {
         colNames[0] = ClassEntry.COLUMN_SEMESTER;
 
         return base.query(true, ClassEntry.TABLE_NAME, colNames, null, null, null, null, null, null);
+    }
+
+    public Cursor getAllClassesInASemesters(String semesterName){
+        logger.info("Start GetAllClassesInASemester");
+        String[] colNames = new String[2];
+        colNames[1] = ClassEntry.COLUMN_CLASS_NAME;
+        colNames[0] = ClassEntry.COLUMN_GRADE;
+
+        //think this should just return all the matching strings
+        return base.query(false, ClassEntry.TABLE_NAME,colNames, ClassEntry.COLUMN_SEMESTER + " = '" + semesterName + "'" , null, null, null, null, null);
+
+
     }
 
     public ArrayList<GPACalculation> getAllSemesterNamesAndGPA(){

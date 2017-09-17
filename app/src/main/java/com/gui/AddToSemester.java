@@ -61,7 +61,6 @@ public class AddToSemester extends AppCompatActivity {
                 }
             }
         });
-        List<GPACalculation> testList = SDQ.getAllSemesterNamesAndGPA();
         mAddClassView = findViewById(R.id.add_class_form);
 
     }

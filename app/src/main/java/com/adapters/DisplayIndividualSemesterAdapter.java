@@ -53,7 +53,7 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
         if (!mCursor.moveToPosition(position)) {
             return;
         }
-        String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_SEMESTER));
+        String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME));
 
         holder.classNameItemView.setText(name);
     }

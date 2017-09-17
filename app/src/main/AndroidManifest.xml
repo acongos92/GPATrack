@@ -40,7 +40,11 @@
             android:name="com.gui.AddNewSemesterPopup"
             android:noHistory="true"
             android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name="com.gui.DisplayIndivudalSemester"
+            android:label="Classes in Semester">
 
+        </activity>
 
     </application>
 

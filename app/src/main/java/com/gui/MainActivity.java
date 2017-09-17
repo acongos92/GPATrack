@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onSemesterGPAClick(String semesterItemName){
         logger.info("MAINACTIVITY start onSemesterItemClick");
-        Intent i = new Intent(MainActivity.this, AddToSemester.class);
+        Intent i = new Intent(MainActivity.this, DisplayIndivudalSemester.class);
         i.putExtra("semName", String.valueOf(semesterItemName));
         startActivity(i);
     }
