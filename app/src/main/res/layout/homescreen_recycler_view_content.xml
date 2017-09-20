@@ -13,7 +13,6 @@
         android:layout_gravity="start"
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
-        android:text="Semester: "
         android:id="@+id/tv_semester_name_display"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:textSize="24sp"
@@ -25,7 +24,6 @@
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
         android:textSize="24sp"
-        android:text="Grade: "
         android:id="@+id/tv_semester_grade_point"/>
 
 

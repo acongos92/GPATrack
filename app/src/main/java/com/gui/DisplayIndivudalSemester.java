@@ -51,6 +51,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8), (int)(height*0.6));
         Intent intent = getIntent();
+        String semesterName = intent.getExtras().getString("semName");
 
         /*
          * Recycler view setup
@@ -63,7 +64,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Finishes setting up the adapter
-        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getAllClassesInASemesters(intent.getExtras().getString("semName")) , this);
+        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getAllClassesInASemesters("oldgreg") , this);
 
         semesterRecyclerView.setAdapter(displaySemesterAdapter);
 

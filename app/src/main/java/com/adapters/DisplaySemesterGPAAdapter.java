@@ -30,6 +30,8 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
     private Context mContext;
     private List<GPACalculation> semestersAndGPA;
     private DisplaySemesterGPAAdapter.DisplaySemesterGPAClickListener clickListener;
+    private final String APPEND_SEMESTER_STRING = "Semester: ";
+    private final String APPEND_GRADE_STRING = "GPA: ";
 
 
     /**
@@ -82,12 +84,12 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
         String name = semestersAndGPA.get(position).getSemesterOrClassName();
         double gpa = semestersAndGPA.get(position).calculateGPA();
         String gpas = Double.toString(gpa);
-        holder.semesterNameAndGpaNameView.append(name);
+        holder.semesterNameAndGpaNameView.append(APPEND_SEMESTER_STRING  + name);
         //control display of gpa digits
         if(gpas.length() > 4){
-            holder.semesterNameAndGpaGPAview.append(gpas.substring(0,4));
+            holder.semesterNameAndGpaGPAview.append(APPEND_GRADE_STRING  + gpas.substring(0,4));
         }else {
-            holder.semesterNameAndGpaGPAview.append(gpas);
+            holder.semesterNameAndGpaGPAview.append(APPEND_GRADE_STRING + gpas);
         }
     }
 
@@ -131,11 +133,11 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
         @Override
         public void onClick(View view){
 
-            LOGGER.info("RECYCLERVIEWCLICKLISTENER start onClick ");
+            LOGGER.info("DisplaySemesterGPAAdapter RECYCLERVIEWCLICKLISTENER start onClick ");
             int clickedPosition = getAdapterPosition();
-
-            LOGGER.info("RECYCLERVIEWCLICKLISTENER made it passed clicked position");
-            clickListener.onSemesterGPAClick(String.valueOf(semesterNameAndGpaNameView.getText()));
+            //procceses out the the string semester: leaving only the semester name for use by the click listener
+            String semesterName = String.valueOf(semesterNameAndGpaNameView.getText()).substring(APPEND_SEMESTER_STRING.length());
+            clickListener.onSemesterGPAClick(semesterName);
         }
     }
 }
