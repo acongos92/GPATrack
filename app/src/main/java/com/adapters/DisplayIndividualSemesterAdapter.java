@@ -27,6 +27,8 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
     private Context mContext;
     private ClassItemClickListener clickListener;
     private Cursor mCursor;
+    private final String CLASS_NAME_PREFIX = "Class: ";
+    private final String CLASS_GRADE_PREFIX  = "Grade: ";
 
 
     //Constructor
@@ -54,8 +56,16 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
             return;
         }
         String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME));
+        //TODO: needs to be converted to letter for display, too lazy to do that as of now
+        double preGrade = mCursor.getDouble(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_GRADE));
+        String grade = String.valueOf(preGrade);
 
-        holder.classNameItemView.setText(name);
+        holder.classNameItemView.setText(CLASS_NAME_PREFIX + name);
+        if (grade.length() > 4){
+            holder.classGradeItemView.append(CLASS_GRADE_PREFIX + grade.substring(0,5));
+        }else {
+            holder.classGradeItemView.append(CLASS_GRADE_PREFIX + grade);
+        }
     }
 
     @Override
@@ -66,10 +76,12 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
 
     class ClassViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView classNameItemView;
+        protected TextView classGradeItemView;
 
         public ClassViewHolder(View itemView) {
             super(itemView);
             classNameItemView = (TextView) itemView.findViewById(R.id.tv_class_name);
+            classGradeItemView = (TextView) itemView.findViewById(R.id.tv_class_grade);
             itemView.setOnClickListener(this);
         }
 
