@@ -57,19 +57,17 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="end">
 
-                <EditText
-                    android:id="@+id/grade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_grade"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    <Spinner
+                        android:id="@+id/spinner_select_grade"
+                        android:gravity ="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                    </Spinner>
+
 
             </android.support.design.widget.TextInputLayout>
 
