@@ -74,9 +74,9 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
     private String convertToLetterGrade(double x){
         //have to append + 0.1 to handle float tolerance (should be a constant i know)
 
-        if(x >= Constants.A_MINUS) {
+        if(x >= Constants.A_MINUS +.1) {
             return "A";
-        }else if (x <= Constants.A && x > Constants.B_PLUS ) {
+        }else if (x <= Constants.A && x > Constants.B_PLUS) {
             return "A-";
         }
         else if (x <= Constants.B_PLUS && x > Constants.B) {
