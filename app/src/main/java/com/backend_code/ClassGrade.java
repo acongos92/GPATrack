@@ -41,7 +41,7 @@ public class ClassGrade {
          Collections.sort(this.vals, new Comparator<keyValObject>() {
             @Override
             public int compare(keyValObject o1, keyValObject o2) {
-                return o1.getKey().compareTo(o2.getKey());
+                return o1.getKey().compareToIgnoreCase(o2.getKey());
             }
         });
     }
@@ -50,7 +50,6 @@ public class ClassGrade {
     public int length(){
         return this.len;
     }
-
 
     //Private class that stores a key - value pair
     private class keyValObject{
