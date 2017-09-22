@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity
     public void onSemesterGPAClick(String semesterItemName){
         logger.info("MAINACTIVITY start onSemesterItemClick");
         Intent i = new Intent(MainActivity.this, DisplayIndivudalSemester.class);
+        logger.info(semesterItemName);
         i.putExtra("semName", String.valueOf(semesterItemName));
         startActivity(i);
     }
