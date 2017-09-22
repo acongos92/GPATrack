@@ -59,10 +59,12 @@ public class MainActivity extends AppCompatActivity
         x.add("Ba", 6.5);
         logger.info("Notice Me!!!");
         for (Integer i = 0; i < x.length(); i++){
-            logger.info(i.toString());
             logger.info(x.getKeyString(i));
         }
-        //x.sortVal();
+        x.sortVal();
+        for (Integer i = 0; i < x.length(); i++){
+            logger.info(x.getKeyString(i));
+        }
         logger.info(x.getValueDouble(0).toString());
         SDQ = new SemesterDatabaseQuery (this , false);
         List<GPACalculation> gpaCalcs = new LinkedList<>();
