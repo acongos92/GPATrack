@@ -90,7 +90,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
         itemTouchHelper.attachToRecyclerView(semesterRecyclerView);
         //Finishes setting up the adapter
-        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getAllClassesInASemesters("oldgreg") , this);
+
+        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getAllClassesInASemesters(semesterName) , this);
 
         semesterRecyclerView.setAdapter(displaySemesterAdapter);
 
