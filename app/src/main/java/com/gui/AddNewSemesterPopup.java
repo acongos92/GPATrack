@@ -1,16 +1,9 @@
 package com.gui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -18,13 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.adapters.PopupSemesterAdapter;
-import com.backend_code.DatabaseDTO;
-import com.database.SemesterDatabase;
-import com.database.SemesterDatabaseHelper;
-import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
-import com.database.SemesterDatabaseQuery;
 
 import java.util.logging.Logger;
 
@@ -63,7 +50,7 @@ public class AddNewSemesterPopup extends AppCompatActivity {
             public void onClick(View v){
                 LOGGER.info("AddNewSemesterPopup create button clicked");
                 if(isValidSemesterName (semesterCreationEditText)) {
-                    Intent i = new Intent(AddNewSemesterPopup.this, AddToSemester.class);
+                    Intent i = new Intent(AddNewSemesterPopup.this, AddClassToSemester.class);
                     i.putExtra("semName", String.valueOf(semesterCreationEditText.getText()));
                     startActivity(i);
                 }else {

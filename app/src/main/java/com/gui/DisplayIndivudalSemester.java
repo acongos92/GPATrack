@@ -2,7 +2,6 @@ package com.gui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.adapters.DisplayIndividualSemesterAdapter;
-import com.adapters.DisplaySemesterGPAAdapter;
-import com.adapters.PopupSemesterAdapter;
 import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
@@ -101,7 +96,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     @Override
     public void onClassItemClick(String semesterItemName){
         logger.info("DisplayIndividualSemester start onSemesterItemClick");
-        Intent i = new Intent(DisplayIndivudalSemester.this, AddToSemester.class);
+        Intent i = new Intent(DisplayIndivudalSemester.this, AddClassToSemester.class);
         //Gives semester name to the new activity as extra data
         i.putExtra("semName", semesterItemName);
         startActivity(i);

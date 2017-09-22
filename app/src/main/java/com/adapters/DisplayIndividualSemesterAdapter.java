@@ -59,12 +59,15 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
         //TODO: needs to be converted to letter for display, too lazy to do that as of now
         double preGrade = mCursor.getDouble(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_GRADE));
         String grade = String.valueOf(preGrade);
+        String classNameString = CLASS_NAME_PREFIX + name;
 
-        holder.classNameItemView.setText(CLASS_NAME_PREFIX + name);
+        holder.classNameItemView.setText(classNameString);
         if (grade.length() > 4){
-            holder.classGradeItemView.append(CLASS_GRADE_PREFIX + grade.substring(0,5));
+            String classGradeString  = CLASS_GRADE_PREFIX + grade.substring(0,5);
+            holder.classGradeItemView.setText(classGradeString);
         }else {
-            holder.classGradeItemView.append(CLASS_GRADE_PREFIX + grade);
+            String classGradeString = CLASS_GRADE_PREFIX + grade;
+            holder.classGradeItemView.setText(classGradeString);
         }
     }
 

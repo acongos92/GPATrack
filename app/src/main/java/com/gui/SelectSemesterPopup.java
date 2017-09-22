@@ -1,15 +1,10 @@
 package com.gui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -18,12 +13,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.adapters.PopupSemesterAdapter;
-import com.backend_code.DatabaseDTO;
-import com.database.SemesterDatabase;
-import com.database.SemesterDatabaseHelper;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
-import com.database.SemesterDatabaseQuery;
 
 import java.util.logging.Logger;
 
@@ -83,7 +74,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
     @Override
     public void onSemesterItemClick(String semesterItemName){
         logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
-        Intent i = new Intent(SelectSemesterPopup.this, AddToSemester.class);
+        Intent i = new Intent(SelectSemesterPopup.this, AddClassToSemester.class);
         //Gives semester name to the new activity as extra data
         i.putExtra("semName", semesterItemName);
         startActivity(i);

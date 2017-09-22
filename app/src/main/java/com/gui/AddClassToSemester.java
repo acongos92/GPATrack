@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 /**
  * screen to input class name credit hours and grade data
  */
-public class AddToSemester extends AppCompatActivity {
+public class AddClassToSemester extends AppCompatActivity {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
 
