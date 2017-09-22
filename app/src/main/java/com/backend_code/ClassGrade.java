@@ -1,6 +1,7 @@
 package com.backend_code;
 
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ public class ClassGrade {
     private static final Logger logger = Logger.getLogger("ClassGrade Logger");
 
     private List<keyValObject> vals;
-
+    private Integer len;
 
     //No Arg Constructor
     public ClassGrade(){
@@ -22,6 +23,7 @@ public class ClassGrade {
     public void add(String className, Double classGrade){
         keyValObject toAdd = new keyValObject(className, classGrade);
         this.vals.add(toAdd);
+        len++;
     }
 
     public String getKeyString(int index){
@@ -34,8 +36,17 @@ public class ClassGrade {
     }
 
     public void sortVal(){
-        logger.info("!!!!!!!!!!!!!!!!!!!!!!");
+         Collections.sort(this.vals, new Comparator<keyValObject>() {
+            @Override
+            public int compare(keyValObject o1, keyValObject o2) {
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        });
         //Collections.sort(this.getKeyString(), new miniMapComparator());
+    }
+
+    public int length(){
+        return this.len;
     }
 
     public class miniMapComparator implements Comparator<String> {
@@ -44,8 +55,6 @@ public class ClassGrade {
             return map1.compareTo(map2);
         }
     }
-
-
 
 
     public class keyValObject{

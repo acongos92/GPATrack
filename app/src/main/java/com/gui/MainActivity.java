@@ -52,12 +52,17 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         //setup database connection and grab required list from the database
         ClassGrade x = new ClassGrade();
-        x.add("Hi", 2.5);
-        x.add("There", 3.5);
-        x.add("How", 4.5);
-        x.add("Are", 5.5);
-        x.add("You?", 6.5);
-        x.sortVal();
+        x.add("D", 2.5);
+        x.add("B", 3.5);
+        x.add("A", 4.5);
+        x.add("X", 5.5);
+        x.add("Ba", 6.5);
+        logger.info("Notice Me!!!");
+        for (Integer i = 0; i < x.length(); i++){
+            logger.info(i.toString());
+            logger.info(x.getKeyString(i));
+        }
+        //x.sortVal();
         logger.info(x.getValueDouble(0).toString());
         SDQ = new SemesterDatabaseQuery (this , false);
         List<GPACalculation> gpaCalcs = new LinkedList<>();
