@@ -16,7 +16,7 @@ import com.example.android.gpatrack.R;
 import java.util.Iterator;
 import java.util.Map;
 
-public class DisplayGPA extends AppCompatActivity {
+public class DisplayGPAStatistics extends AppCompatActivity {
 
     private TextView mCumulativeGPA;
     private SemesterDatabaseQuery SDQ;
