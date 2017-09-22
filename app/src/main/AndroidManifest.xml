@@ -32,7 +32,7 @@
             android:noHistory="true"
             android:theme="@style/AppTheme.CustomTheme"></activity>
         <activity
-            android:name="com.gui.DisplayGPA"
+            android:name="com.gui.DisplayGPAStatistics"
             android:label="@string/title_activity_display_gp"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         >

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.gui.DisplayGPA">
+    tools:context="com.gui.DisplayGPAStatistics">
     <android.support.design.widget.AppBarLayout
         android:layout_height="30dp"
         android:layout_width="fill_parent">

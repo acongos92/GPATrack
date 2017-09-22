@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.adapters.DisplaySemesterGPAAdapter;
-import com.adapters.PopupSemesterAdapter;
 import com.backend_code.GPACalculation;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
@@ -118,7 +117,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.add_new_semester) {
             startActivity(new Intent(MainActivity.this, AddNewSemesterPopup.class));
         } else if (id == R.id.current_gpa) {
-            startActivity(new Intent(MainActivity.this, DisplayGPA.class));
+            startActivity(new Intent(MainActivity.this, DisplayGPAStatistics.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_share) {
             makeToast("Share Feature Coming soon");
