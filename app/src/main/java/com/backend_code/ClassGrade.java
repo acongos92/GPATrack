@@ -13,7 +13,7 @@ public class ClassGrade {
     private static final Logger logger = Logger.getLogger("ClassGrade Logger");
 
     private List<keyValObject> vals;
-    private Integer len;
+    private int len;
 
     //No Arg Constructor
     public ClassGrade(){
