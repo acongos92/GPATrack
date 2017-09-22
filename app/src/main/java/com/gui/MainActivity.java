@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         x.add("How", 4.5);
         x.add("Are", 5.5);
         x.add("You?", 6.5);
+        x.sortVal();
+        logger.info(x.getValueDouble(0).toString());
         SDQ = new SemesterDatabaseQuery (this , false);
         List<GPACalculation> gpaCalcs = new LinkedList<>();
         gpaCalcs  = SDQ.getAllSemesterNamesAndGPA();

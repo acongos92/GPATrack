@@ -29,13 +29,12 @@ public class ClassGrade {
 
     }
 
-    public Double getKeyDouble(int index){
+    public Double getValueDouble(int index){
         return this.vals.get(index).getValue();
     }
 
     public void sortVal(){
         logger.info("!!!!!!!!!!!!!!!!!!!!!!");
-        logger.info(this.toString());
         //Collections.sort(this.getKeyString(), new miniMapComparator());
     }
 
