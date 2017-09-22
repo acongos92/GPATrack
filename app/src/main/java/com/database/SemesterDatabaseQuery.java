@@ -67,31 +67,9 @@ public class SemesterDatabaseQuery {
      * @param data data transfer object containing data to be removed from the database
      */
     public void removeFromDatabase(DatabaseDTO data) {
-        base.delete(ClassEntry.TABLE_NAME, ClassEntry.COLUMN_CLASS_NAME, new String[]{"=", data.getClassName(), null});
+        base.delete(ClassEntry.TABLE_NAME, ClassEntry.COLUMN_CLASS_NAME + "='" + data.getClassName() + "'",null);
     }
 
-    /**
-     * Returns an array of strings that contain all the current semesters
-     */
-    public String[] queryAllSemester() {
-        logger.info("start getAllClassNames");
-        Cursor cursor = wholeDB();
-
-        int numRows = cursor.getCount();
-
-        String[] names = new String[numRows];
-        int index = cursor.getColumnIndex(ClassEntry.COLUMN_SEMESTER);
-        cursor.moveToFirst();
-
-        for (int i = 0; i < numRows; i++) {
-            names[i] = cursor.getString(index);
-            cursor.moveToNext();
-        }
-
-        cursor.close();
-        return names;
-
-    }
 
     /**
      * @return an integer array containing all numeric grades
