@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import com.constants.Constants;
 import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
+
 
 public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<DisplayIndividualSemesterAdapter.ClassViewHolder> {
 
@@ -56,9 +57,8 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
             return;
         }
         String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME));
-        //TODO: needs to be converted to letter for display, too lazy to do that as of now
         double preGrade = mCursor.getDouble(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_GRADE));
-        String grade = String.valueOf(preGrade);
+        String grade = convertToLetterGrade(preGrade);
         String classNameString = CLASS_NAME_PREFIX + name;
 
         holder.classNameItemView.setText(classNameString);
@@ -69,6 +69,44 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
             String classGradeString = CLASS_GRADE_PREFIX + grade;
             holder.classGradeItemView.setText(classGradeString);
         }
+    }
+
+    private String convertToLetterGrade(double x){
+        //have to append + 0.1 to handle float tolerance (should be a constant i know)
+
+        if(x >= Constants.A_MINUS) {
+            return "A";
+        }else if (x <= Constants.A && x > Constants.B_PLUS ) {
+            return "A-";
+        }
+        else if (x <= Constants.B_PLUS && x > Constants.B) {
+            return "B+";
+        }
+        else if (x <= Constants.B && x > Constants.B_MINUS +.1 ) {
+            return "B";
+        }
+        else if (x <= Constants.B_MINUS +.1&& x > Constants.C_PLUS) {
+            return "B-";
+        }
+        else if (x <= Constants.C_PLUS && x > Constants.C) {
+            return "C+";
+        }
+        else if (x <= Constants.C && x > Constants.C_MINUS +.1) {
+            return "C";
+        }
+        else if (x <= Constants.C_MINUS+.1 && x > Constants.D_PLUS) {
+            return "C-";
+        }
+        else if (x <= Constants.D_PLUS && x > Constants.D) {
+            return "D+";
+        }
+        else if (x <= Constants.D && x > 1.0) {
+            return "D";
+        }
+        else{
+            return "E";
+        }
+
     }
 
     @Override
