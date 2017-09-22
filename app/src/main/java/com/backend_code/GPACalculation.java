@@ -19,7 +19,7 @@ public class GPACalculation {
      */
     public GPACalculation(int hours, double gradePoints){
         this.hours = hours;
-        this.gradePoints= gradePoints;
+        this.gradePoints= (gradePoints * hours);
     }
 
     /**
