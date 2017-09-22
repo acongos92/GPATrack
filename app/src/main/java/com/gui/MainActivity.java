@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.adapters.DisplaySemesterGPAAdapter;
+import com.backend_code.ClassGrade;
 import com.backend_code.GPACalculation;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
@@ -50,7 +51,12 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         //setup database connection and grab required list from the database
-
+        ClassGrade x = new ClassGrade();
+        x.add("Hi", 2.5);
+        x.add("There", 3.5);
+        x.add("How", 4.5);
+        x.add("Are", 5.5);
+        x.add("You?", 6.5);
         SDQ = new SemesterDatabaseQuery (this , false);
         List<GPACalculation> gpaCalcs = new LinkedList<>();
         gpaCalcs  = SDQ.getAllSemesterNamesAndGPA();
