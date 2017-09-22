@@ -36,7 +36,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
     private EditText mClassName;
     private EditText mCreditHours;
     private Spinner letterGrade;
-    private View mAddClassView;
+
     SemesterDatabaseQuery SDQ;
 
     @Override
@@ -66,7 +66,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
                 }
             }
         });
-        mAddClassView = findViewById(R.id.add_class_form);
+
 
         letterGrade.setAdapter(gradeAdapter);
 
@@ -77,18 +77,20 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         String className;
         String creditHours;
         String grade;
+
         //instantiate a database connection with this as context and true meaning writeable
         SDQ = new SemesterDatabaseQuery(this, true);
 
         Intent intent = getIntent();
         String sem = intent.getExtras().getString("semName");
 
-
+        grade = letterGrade.getSelectedItem().toString();
         className = mClassName.getText().toString();
         creditHours = mCreditHours.getText().toString();
 
         int numericHours = Integer.parseInt(creditHours);
-        AddNewClass course = new AddNewClass(className, numericHours,"temp");
+        AddNewClass course = new AddNewClass(className, numericHours, grade);
+
         SDQ.addToDatabase(buildDTO(course, sem));
         SDQ.closeConnection();
 
@@ -97,13 +99,6 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
        return  new DatabaseDTO(sem, newClass.getClassName(),(float) newClass.getNumericGrade(), newClass.getCreditHours());
     }
 
-    private void makeToast(String message){
-        Context context = getApplicationContext();
-        CharSequence text = message;
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
 
     @Override
     protected void onDestroy(){
@@ -116,6 +111,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
 
     private boolean isValidClass() {
         boolean isGood = true;
+
         if (mClassName.getText().length() < 1) {
             isGood = false;
         }
@@ -157,5 +153,13 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         // TODO Auto-generated method stub
     }
 
+
+    private void makeToast(String message){
+        Context context = getApplicationContext();
+        CharSequence text = message;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
 }
 
