@@ -32,13 +32,15 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
     private RecyclerView semesterRecyclerView;
 
-    private SemesterDatabaseQuery SDQ;
+    private SemesterDatabaseQuery SDQRead;
+
+    private SemesterDatabaseQuery SDQWrite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        SDQ = new SemesterDatabaseQuery(this , true);
+        SDQRead = new SemesterDatabaseQuery(this , false);
         setContentView(R.layout.activity_individual_semester_classes);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -77,8 +79,6 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
                 displaySemesterAdapter.notifyDataSetChanged();
 
             }
-
-
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipe);
@@ -86,9 +86,11 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         itemTouchHelper.attachToRecyclerView(semesterRecyclerView);
         //Finishes setting up the adapter
 
-        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQ.getAllClassesInASemesters(semesterName) , this);
+        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQRead.getAllClassesInASemesters(semesterName) , this);
 
         semesterRecyclerView.setAdapter(displaySemesterAdapter);
+
+
 
 
     }
@@ -111,7 +113,19 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     }
 
     private void deleteClass(String className){
+        SDQWrite = new SemesterDatabaseQuery(this, true);
         DatabaseDTO data = new DatabaseDTO(null, className, 0, 0);
-        SDQ.removeFromDatabase(data);
+        SDQWrite.removeFromDatabase(data);
+        SDQWrite.closeConnection();
+    }
+    @Override
+    public void onDestroy(){
+        if(SDQRead != null){
+            SDQRead.closeConnection();
+        }
+        if(SDQWrite != null){
+            SDQWrite.closeConnection();
+        }
+        super.onDestroy();
     }
 }

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_semesters);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,6 +87,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        SDQ.closeConnection();
+
     }
 
     @Override
@@ -167,5 +171,13 @@ public class MainActivity extends AppCompatActivity
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
+
+    @Override
+    public void onDestroy(){
+        if(SDQ != null){
+            SDQ.closeConnection();
+        }
+        super.onDestroy();
     }
 }

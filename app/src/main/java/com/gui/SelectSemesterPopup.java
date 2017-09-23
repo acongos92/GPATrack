@@ -87,6 +87,13 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
     }
+    @Override
+    public void onDestroy(){
+        if(SDQ != null){
+            SDQ.closeConnection();
+        }
+        super.onDestroy();
+    }
 
 
 

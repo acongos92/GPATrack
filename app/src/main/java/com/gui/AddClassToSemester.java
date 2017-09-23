@@ -161,5 +161,6 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
     }
+
 }
 
