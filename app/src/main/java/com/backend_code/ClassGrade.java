@@ -25,6 +25,13 @@ public class ClassGrade {
         len++;
     }
 
+    //Deletes from the object
+    public String delete(int index){
+        String toReturn = this.vals.get(index).getKey();
+        this.vals.remove(index);
+        return toReturn;
+    }
+
     //Returns the string key
     public String getKeyString(int index){
         return this.vals.get(index).getKey();
