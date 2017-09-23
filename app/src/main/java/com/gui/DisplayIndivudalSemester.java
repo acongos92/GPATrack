@@ -75,7 +75,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
                 makeToast("lel just got swiped bro");
                 //deleteClass("a");
-                //TODO: need to shift recycler views to using arrays or lists, using cursor objects sucks for deleting 
+                //TODO: need to shift recycler views to using arrays or lists, using cursor objects sucks for deleting
+                
                 displaySemesterAdapter.notifyDataSetChanged();
 
             }
