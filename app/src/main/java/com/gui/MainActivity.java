@@ -53,16 +53,18 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         //setup database connection and grab required list from the database
         ClassGrade x = new ClassGrade();
-        x.add("D", 2.5);
-        x.add("B", 3.5);
-        x.add("A", 4.5);
-        x.add("X", 5.5);
-        x.add("Ba", 6.5);
+        x.add("A", 2.5);
+        x.add("Z", 3.5);
+        x.add("x", 4.5);
+        x.add("C", 5.5);
+        x.add("y", 6.5);
+        x.add("a", 7.5);
         logger.info("Notice Me!!!");
         for (Integer i = 0; i < x.length(); i++){
             logger.info(x.getKeyString(i));
         }
         x.sortVal();
+        logger.info("BREAK");
         for (Integer i = 0; i < x.length(); i++){
             logger.info(x.getKeyString(i));
         }
