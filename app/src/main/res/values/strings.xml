@@ -36,4 +36,6 @@
     <string name="add_new_semester_button">Add New Semester</string>
     <string name="select_semester_header">Semester Selection</string>
     <string name="select">Select</string>
+    <string name="create">Create</string>
+    <string name="ask_for_semester_name_input">Input Semester Name</string>
 </resources>

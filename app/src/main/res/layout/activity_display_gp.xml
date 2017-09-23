@@ -16,7 +16,7 @@
         android:textColor="#FFF"
         android:text="@string/cumulative_gpa"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="20sp"
 
         />
     </android.support.design.widget.AppBarLayout>
@@ -30,10 +30,12 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/semesters"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/semesters">
+
+            </android.support.v7.widget.RecyclerView>
 
 
         </LinearLayout>
-    >
+
 
 </LinearLayout>
