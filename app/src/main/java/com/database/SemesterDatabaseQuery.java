@@ -1,6 +1,8 @@
 package com.database;
 
 
+import com.backend_code.AddNewClass;
+import com.backend_code.ClassGrade;
 import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabase.ClassEntry;
 
@@ -151,16 +153,26 @@ public class SemesterDatabaseQuery {
         return base.query(true, ClassEntry.TABLE_NAME, colNames, null, null, null, null, null, null);
     }
 
-    public Cursor getAllClassesInASemesters(String semesterName){
+    public ClassGrade getAllClassesInASemesters(String semesterName){
         logger.info("Start GetAllClassesInASemester");
         String[] colNames = new String[2];
         colNames[1] = ClassEntry.COLUMN_CLASS_NAME;
         colNames[0] = ClassEntry.COLUMN_GRADE;
 
         //think this should just return all the matching strings
-        return base.query(false, ClassEntry.TABLE_NAME,colNames, ClassEntry.COLUMN_SEMESTER + " = '" + semesterName + "'" , null, null, null, null, null);
+        Cursor cursor =  base.query(false, ClassEntry.TABLE_NAME,colNames, ClassEntry.COLUMN_SEMESTER + " = '" + semesterName + "'" , null, null, null, null, null);
+        ClassGrade classGrade = new ClassGrade();
+        int numRows = cursor.getCount();
+        cursor.moveToFirst();
+        for(int i = 0; i < numRows; i++){
+            classGrade.add(cursor.getString(cursor.getColumnIndex(ClassEntry.COLUMN_CLASS_NAME)), cursor.getDouble(cursor.getColumnIndex(ClassEntry.COLUMN_GRADE)));
+            cursor.moveToNext();
+
+        }
 
 
+
+        return classGrade;
     }
 
     public ArrayList<GPACalculation> getAllSemesterNamesAndGPA(){
@@ -189,6 +201,14 @@ public class SemesterDatabaseQuery {
         return new ArrayList<GPACalculation>(gpas);
     }
 
+    /**
+     * close database connection
+     */
+    public void closeConnection(){
+        this.dBHelper.close();
+        this.base.close();
+    }
+
 
     //private helpers
     private Cursor wholeDB() {
@@ -210,10 +230,7 @@ public class SemesterDatabaseQuery {
         return new DatabaseDTO("wut", "wut", 10, 10);
     }
 
-    public void closeConnection(){
-        this.dBHelper.close();
-        this.base.close();
-    }
+
 
 
 }

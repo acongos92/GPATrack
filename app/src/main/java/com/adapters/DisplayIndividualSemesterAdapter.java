@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.backend_code.ClassGrade;
 import com.constants.Constants;
 import com.database.SemesterDatabase;
 import com.example.android.gpatrack.R;
@@ -27,16 +29,16 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
     private static final Logger LOGGER = Logger.getLogger("DisplayIndiSemesterAdapter Logger");
     private Context mContext;
     private ClassItemClickListener clickListener;
-    private Cursor mCursor;
+    private ClassGrade classGrade;
     private final String CLASS_NAME_PREFIX = "Class: ";
     private final String CLASS_GRADE_PREFIX  = "Grade: ";
 
 
     //Constructor
-    public DisplayIndividualSemesterAdapter(Context context, Cursor cursor, ClassItemClickListener listener) {
+    public DisplayIndividualSemesterAdapter(Context context, ClassGrade classGrade, ClassItemClickListener listener) {
         this.mContext = context;
         clickListener = listener;
-        this.mCursor = cursor;
+        this.classGrade = classGrade;
     }
 
     @Override
@@ -53,11 +55,11 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
 
     @Override
     public void onBindViewHolder(DisplayIndividualSemesterAdapter.ClassViewHolder holder, int position) {
-        if (!mCursor.moveToPosition(position)) {
+        if (classGrade.length() < position) {
             return;
         }
-        String name = mCursor.getString(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_CLASS_NAME));
-        double preGrade = mCursor.getDouble(mCursor.getColumnIndex(SemesterDatabase.ClassEntry.COLUMN_GRADE));
+        String name = classGrade.getKeyString(position);
+        double preGrade = classGrade.getValueDouble(position);
         String grade = convertToLetterGrade(preGrade);
         String classNameString = CLASS_NAME_PREFIX + name;
 
@@ -111,7 +113,7 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
 
     @Override
     public int getItemCount() {
-        return mCursor.getCount();
+        return classGrade.length();
     }
 
 
