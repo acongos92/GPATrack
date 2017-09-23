@@ -28,7 +28,7 @@ public class AddNewSemesterPopup extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.create_new_semester);
+        setContentView(R.layout.activity_create_new_semester);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
