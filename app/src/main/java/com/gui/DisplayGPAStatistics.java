@@ -1,15 +1,11 @@
 package com.gui;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.backend_code.GPACalculation;
-import com.database.SemesterDatabaseHelper;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
@@ -25,7 +21,7 @@ public class DisplayGPAStatistics extends AppCompatActivity {
 
         SDQ = new SemesterDatabaseQuery(this, false);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_gp);
+        setContentView(R.layout.activity_gpa_statisctics_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mCumulativeGPA = (TextView) findViewById(R.id.cumulative_gpa_display);
 

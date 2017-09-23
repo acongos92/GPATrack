@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.adapters.DisplaySemesterGPAAdapter;
-import com.backend_code.ClassGrade;
 import com.backend_code.GPACalculation;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_semesters);
+        setContentView(R.layout.menu_select_new_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

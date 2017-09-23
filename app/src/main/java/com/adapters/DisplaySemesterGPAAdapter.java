@@ -47,6 +47,7 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
     }
 
 
+
     /**
      * we override onCreateViewHolder in order to use our own view definitions in implementation
      * by default implementation this would be incorrectly done

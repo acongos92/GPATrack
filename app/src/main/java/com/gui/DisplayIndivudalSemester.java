@@ -76,7 +76,6 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
                 makeToast("lel just got swiped bro");
                 //deleteClass("a");
                 //TODO: need to shift recycler views to using arrays or lists, using cursor objects sucks for deleting
-                
                 displaySemesterAdapter.notifyDataSetChanged();
 
             }

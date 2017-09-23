@@ -133,9 +133,7 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
              clickListener.onClassItemClick(String.valueOf(classNameItemView.getText()));
         }
 
-        public void delete(){
-            //wonder what this does
-        }
+
 
 
     }

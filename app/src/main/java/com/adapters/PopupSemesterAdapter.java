@@ -56,7 +56,7 @@ public class PopupSemesterAdapter extends RecyclerView.Adapter<PopupSemesterAdap
     @Override
     public SemesterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.semester_name_list_item;
+        int layoutIdForListItem = R.layout.select_semester_recycler_view_content;
         LayoutInflater inflater = LayoutInflater.from(context);
 
         boolean shouldAttachToParentImmediately = false;
