@@ -38,13 +38,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        logger.info("first log");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_select_new_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        logger.info("first log2");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity
          */
         //Setup the recycler view based on the id in the xml
         homeScreenRecylcerView = (RecyclerView) this.findViewById(R.id.rv_homeScreen);
-        logger.info("first log3");
         // Sets the layout manager for the recycler view
         homeScreenRecylcerView.setLayoutManager(new LinearLayoutManager(this));
 
