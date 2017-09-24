@@ -110,11 +110,13 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
         }
 
     }
-    public String getSwipedName(View view){
+    public String getTrimmedSwipedName(View view){
         DisplayIndividualSemesterAdapter.ClassViewHolder holder = new ClassViewHolder(view);
         String name = holder.getSwipedItemName(view);
 
-        return name;
+        String trimmedName = name.substring(CLASS_NAME_PREFIX.length());
+
+        return trimmedName;
     }
 
 

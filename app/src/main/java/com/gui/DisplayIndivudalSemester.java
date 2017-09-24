@@ -76,7 +76,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
                 int pos = viewHolder.getAdapterPosition();
                 View view  = semesterRecyclerView.getChildAt(pos);
-                String className = displaySemesterAdapter.getSwipedName(view);
+                String className = displaySemesterAdapter.getTrimmedSwipedName(view);
                 makeToast("lel " + className + " just got swiped bro");
 
                 displaySemesterAdapter.notifyDataSetChanged();
