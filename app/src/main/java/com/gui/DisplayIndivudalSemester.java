@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.Toast;
 
 import com.adapters.DisplayIndividualSemesterAdapter;
@@ -73,9 +74,11 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
             }
 
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
-                makeToast("lel just got swiped bro");
-                //deleteClass("a");
-                //TODO: need to shift recycler views to using arrays or lists, using cursor objects sucks for deleting
+                int pos = viewHolder.getAdapterPosition();
+                View view  = semesterRecyclerView.getChildAt(pos);
+                String className = displaySemesterAdapter.getSwipedName(view);
+                makeToast("lel " + className + " just got swiped bro");
+
                 displaySemesterAdapter.notifyDataSetChanged();
 
             }
@@ -87,7 +90,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         //Finishes setting up the adapter
 
         displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQRead.getAllClassesInASemesters(semesterName) , this);
-
+        SDQRead.closeConnection();
         semesterRecyclerView.setAdapter(displaySemesterAdapter);
 
 

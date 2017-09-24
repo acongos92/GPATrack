@@ -110,6 +110,13 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
         }
 
     }
+    public String getSwipedName(View view){
+        DisplayIndividualSemesterAdapter.ClassViewHolder holder = new ClassViewHolder(view);
+        String name = holder.getSwipedItemName(view);
+
+        return name;
+    }
+
 
     @Override
     public int getItemCount() {
@@ -118,6 +125,7 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
 
 
     class ClassViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         protected TextView classNameItemView;
         protected TextView classGradeItemView;
 
@@ -131,6 +139,11 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
         @Override
         public void onClick(View view) {
              clickListener.onClassItemClick(String.valueOf(classNameItemView.getText()));
+        }
+
+        public String getSwipedItemName(View view){
+            String swipedItem = String.valueOf(classNameItemView.getText());
+            return swipedItem;
         }
 
 

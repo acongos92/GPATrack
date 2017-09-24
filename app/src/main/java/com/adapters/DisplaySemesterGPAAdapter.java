@@ -140,6 +140,8 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
             String semesterName = String.valueOf(semesterNameAndGpaNameView.getText()).substring(APPEND_SEMESTER_STRING.length());
             clickListener.onSemesterGPAClick(semesterName);
         }
+
+
     }
 }
 

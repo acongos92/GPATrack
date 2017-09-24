@@ -50,7 +50,13 @@ public class DisplayGPAStatistics extends AppCompatActivity {
 
 
     }
-
+    @Override
+    public void onDestroy(){
+        if(SDQ != null){
+            SDQ.closeConnection();
+        }
+        super.onDestroy();
+    }
 
 
 }
