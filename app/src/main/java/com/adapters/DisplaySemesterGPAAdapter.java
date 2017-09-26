@@ -94,7 +94,7 @@ public class DisplaySemesterGPAAdapter extends RecyclerView.Adapter<DisplaySemes
             gradeString = APPEND_GRADE_STRING  + gpas.substring(0,4);
             holder.semesterNameAndGpaGPAview.setText(gradeString);
         }else {
-            gradeString = APPEND_GRADE_STRING + gpas
+            gradeString = APPEND_GRADE_STRING + gpas;
             holder.semesterNameAndGpaGPAview.setText(gradeString);
         }
     }
