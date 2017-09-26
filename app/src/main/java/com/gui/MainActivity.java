@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity
         super.onRestart();
         finish();
         startActivity(getIntent());
-
     }
 
     private void makeToast(String message){

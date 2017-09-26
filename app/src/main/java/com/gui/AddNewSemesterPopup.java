@@ -76,6 +76,13 @@ public class AddNewSemesterPopup extends AppCompatActivity {
         return (et.getText().length() > 0) && (et.getText().length() < 20);
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
 
 
 

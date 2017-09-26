@@ -95,6 +95,12 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         super.onDestroy();
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 
 
 

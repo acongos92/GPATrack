@@ -178,4 +178,11 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         }
 
     }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 }

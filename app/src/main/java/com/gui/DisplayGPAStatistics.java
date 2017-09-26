@@ -58,5 +58,12 @@ public class DisplayGPAStatistics extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
 
 }

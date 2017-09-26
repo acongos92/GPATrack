@@ -162,5 +162,12 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         toast.show();
     }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
 }
 
