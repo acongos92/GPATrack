@@ -118,6 +118,11 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
 
         return trimmedName;
     }
+    public void deleteClassFromAdapter(String className){
+        classGrade.delete(className);
+        this.notifyDataSetChanged();
+    }
+
 
 
     @Override

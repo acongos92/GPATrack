@@ -69,7 +69,7 @@ public class SemesterDatabaseQuery {
      * @param data data transfer object containing data to be removed from the database
      */
     public void removeFromDatabase(DatabaseDTO data) {
-        base.delete(ClassEntry.TABLE_NAME, ClassEntry.COLUMN_CLASS_NAME + "='" + data.getClassName() + "'",null);
+        base.delete(ClassEntry.TABLE_NAME, ClassEntry.COLUMN_CLASS_NAME + "=? and " + ClassEntry.COLUMN_SEMESTER + "=?",new String[] {data.getClassName(), data.getSemester()});
     }
 
 

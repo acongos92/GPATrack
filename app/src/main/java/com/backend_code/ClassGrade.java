@@ -29,6 +29,7 @@ public class ClassGrade {
     public String delete(int index){
         String toReturn = this.vals.get(index).getKey();
         this.vals.remove(index);
+        this.len--;
         return toReturn;
     }
 
@@ -58,6 +59,18 @@ public class ClassGrade {
         return this.len;
     }
 
+    //deletes by class name, very sad, must rewrite, sorry gabe.
+    public void delete(String index){
+        int pos = 0;
+        for (int i = 0; i < this.vals.size(); i++){
+            if (index.equalsIgnoreCase(this.vals.get(i).getKey())){
+                pos = i;
+                i  = this.vals.size();
+            }
+        }
+        delete(pos);
+    }
+
     //Private class that stores a key - value pair
     private class keyValObject{
         private String className;
@@ -76,4 +89,6 @@ public class ClassGrade {
             return this.classGrade;
         }
     }
+
+
 }

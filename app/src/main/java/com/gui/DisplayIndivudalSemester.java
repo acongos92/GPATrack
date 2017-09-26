@@ -1,6 +1,8 @@
 package com.gui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -37,6 +39,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
     private SemesterDatabaseQuery SDQWrite;
 
+    private String SEMESTER_NAME;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -50,6 +54,9 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
         Intent intent = getIntent();
         String semesterName = intent.getExtras().getString("semName");
+
+        //writing in for proper database deletion method
+        this.SEMESTER_NAME = semesterName;
 
         /*
          * Recycler view setup
@@ -77,8 +84,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
                 int pos = viewHolder.getAdapterPosition();
                 View view  = semesterRecyclerView.getChildAt(pos);
                 String className = displaySemesterAdapter.getTrimmedSwipedName(view);
-                Intent intent = new Intent(DisplayIndivudalSemester.this, ConfirmDeletePopup.class);
-                startActivity(intent);
+                confirmSwipeDelete(className, SEMESTER_NAME);
+
                 displaySemesterAdapter.notifyDataSetChanged();
 
             }
@@ -115,10 +122,11 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         toast.show();
     }
 
-    private void deleteClass(String className){
+    private void deleteClass(String className, String semesterName){
         SDQWrite = new SemesterDatabaseQuery(this, true);
-        DatabaseDTO data = new DatabaseDTO(null, className, 0, 0);
+        DatabaseDTO data = new DatabaseDTO(semesterName, className, 0, 0);
         SDQWrite.removeFromDatabase(data);
+        displaySemesterAdapter.deleteClassFromAdapter(className);
         SDQWrite.closeConnection();
     }
     @Override
@@ -130,5 +138,44 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
             SDQWrite.closeConnection();
         }
         super.onDestroy();
+    }
+
+    public boolean confirmSwipeDelete(String className , String semesterName){
+        String deletePrompt = "Do you wish to delete " + className + "?";
+        String yes = "yes";
+        String no  ="no";
+        tempListener listener = new tempListener();
+        listener.setClassName(className);
+        listener.setSemName(SEMESTER_NAME);
+        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).
+                setTitle("Confirm Delete").setMessage(deletePrompt).setPositiveButton(yes , listener).
+                setNegativeButton("no", listener).show();
+
+        return true;
+    }
+    class tempListener implements DialogInterface.OnClickListener {
+        private String className;
+        private String semName;
+        @Override
+        public void onClick(DialogInterface dialog, int which){
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    deleteClass(this.className, this.semName);
+                    makeToast("Class was removed");
+                    dialog.dismiss();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    makeToast("class was not removed");
+                    dialog.dismiss();
+                    break;
+            }
+        }
+        public void setClassName(String className){
+            this.className = className;
+        }
+        public void setSemName(String semName){
+            this.semName = semName;
+        }
+
     }
 }

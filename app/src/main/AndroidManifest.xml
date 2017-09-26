@@ -53,10 +53,6 @@
             android:label="Classes in Semester">
 
         </activity>
-        <activity
-            android:name="com.gui.ConfirmDeletePopup"
-            android:label="confirm class deletion">
-        </activity>
 
     </application>
 
