@@ -77,8 +77,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
                 int pos = viewHolder.getAdapterPosition();
                 View view  = semesterRecyclerView.getChildAt(pos);
                 String className = displaySemesterAdapter.getTrimmedSwipedName(view);
-                makeToast("lel " + className + " just got swiped bro");
-
+                Intent intent = new Intent(DisplayIndivudalSemester.this, ConfirmDeletePopup.class);
+                startActivity(intent);
                 displaySemesterAdapter.notifyDataSetChanged();
 
             }
@@ -100,11 +100,11 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
     @Override
     public void onClassItemClick(String semesterItemName){
-        logger.info("DisplayIndividualSemester start onSemesterItemClick");
-        Intent i = new Intent(DisplayIndivudalSemester.this, AddClassToSemester.class);
+        //logger.info("DisplayIndividualSemester start onSemesterItemClick");
+        //Intent i = new Intent(DisplayIndivudalSemester.this, AddClassToSemester.class);
         //Gives semester name to the new activity as extra data
-        i.putExtra("semName", semesterItemName);
-        startActivity(i);
+        //i.putExtra("semName", semesterItemName);
+        //startActivity(i);
     }
 
     private void makeToast(String message){

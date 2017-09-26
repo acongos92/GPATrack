@@ -3,13 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/add_new_class"
-            android:icon="@drawable/ic_add_new_class"
-            android:title="@string/add_new_class"/>
-        <item
             android:id="@+id/add_new_semester"
             android:icon="@drawable/ic_add_new_semester"
             android:title="@string/add_new_semester"/>
+        <item
+            android:id="@+id/add_new_class"
+            android:icon="@drawable/ic_add_new_class"
+            android:title="@string/add_new_class"/>
         <item
             android:id="@+id/current_gpa"
             android:icon="@drawable/ic_current_gpa"

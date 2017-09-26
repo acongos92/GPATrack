@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adapters.DisplaySemesterGPAAdapter;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity
 
     private DisplaySemesterGPAAdapter recylcerViewAdapter;
 
+    private TextView noSemestersView;
+
     private Logger logger = Logger.getLogger("MainActivity logger");
 
     @Override
@@ -52,23 +55,28 @@ public class MainActivity extends AppCompatActivity
         SDQ = new SemesterDatabaseQuery (this , false);
         List<GPACalculation> gpaCalcs = new LinkedList<>();
         gpaCalcs  = SDQ.getAllSemesterNamesAndGPA();
-
+        if(gpaCalcs.size() > 0) {
         /*
          * Recycler view setup
          */
-        //Setup the recycler view based on the id in the xml
-        homeScreenRecylcerView = (RecyclerView) this.findViewById(R.id.rv_homeScreen);
-        // Sets the layout manager for the recycler view
-        homeScreenRecylcerView.setLayoutManager(new LinearLayoutManager(this));
+            //Setup the recycler view based on the id in the xml
+            homeScreenRecylcerView = (RecyclerView) this.findViewById(R.id.rv_homeScreen);
+            // Sets the layout manager for the recycler view
+            homeScreenRecylcerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Finishes setting up the adapter
-        recylcerViewAdapter = new DisplaySemesterGPAAdapter(this, gpaCalcs, this);
+            //Finishes setting up the adapter
+            recylcerViewAdapter = new DisplaySemesterGPAAdapter(this, gpaCalcs, this);
 
-        homeScreenRecylcerView.setAdapter(recylcerViewAdapter);
+            homeScreenRecylcerView.setAdapter(recylcerViewAdapter);
+            noSemestersView = (TextView) findViewById(R.id.no_semesters_found);
+            noSemestersView.setText("");
 
+        }else{
+            noSemestersView = (TextView) findViewById(R.id.no_semesters_found);
+        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        logger.info("first log4");
+
         SDQ.closeConnection();
 
     }
