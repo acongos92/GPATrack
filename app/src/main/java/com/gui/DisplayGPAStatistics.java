@@ -32,20 +32,14 @@ public class DisplayGPAStatistics extends AppCompatActivity {
 
     //set the content of cumulative gpa
     private void setCumulativeGpa(TextView view, SemesterDatabaseQuery query){
-        Map<Float ,Integer> allGrades = query.getCreditHoursAndGrades();
-        GPACalculation calc  = new GPACalculation();
-        Iterator it = allGrades.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            calc.addPointsAndHours((int)pair.getValue(),(float) pair.getKey());
-        }
-        double gpa = calc.calculateGPA();
 
-        CharSequence newText = (" " + Double.toString(gpa));
+        double gpa = query.getCumulativeGpa();
+
+        String newText = (" " + Double.toString(gpa));
         if(newText.length() > 5){
-            view.append(newText, 0, 5);
+            view.append(newText.substring(0,5));
         }else {
-            view.append(newText, 0, newText.length());
+            view.append(newText);
         }
 
 

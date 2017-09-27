@@ -118,27 +118,25 @@ public class SemesterDatabaseQuery {
      * think this is dead code?
      * @return map containing all credit hours earned at a particular grade point
      */
-    public Map<Float, Integer> getCreditHoursAndGrades(){
+    public double getCumulativeGpa(){
         logger.info("start getCreditHoursAndGrades");
         Cursor cursor = wholeDB();
         int numRows = cursor.getCount();
 
-        Map<Float, Integer> gradesAndPoints = new HashMap<Float, Integer>();
         int gradeIndex = cursor.getColumnIndex(ClassEntry.COLUMN_GRADE);
         int creditIndex = cursor.getColumnIndex(ClassEntry.COLUMN_CREDIT_HOURS);
-
+        GPACalculation calc = new GPACalculation();
         cursor.moveToFirst();
-        for(int i = 0; i < numRows; i++) {
-            if(gradesAndPoints.containsKey(cursor.getFloat(gradeIndex))){
-                int current = gradesAndPoints.get(cursor.getFloat(gradeIndex));
-                gradesAndPoints.put(cursor.getFloat(gradeIndex),(current + cursor.getInt(creditIndex)));
-            }else {
-                gradesAndPoints.put(cursor.getFloat(gradeIndex), cursor.getInt(creditIndex));
-            }
+        for(int i = 0; i < numRows; i++){
+            double grade = cursor.getFloat(gradeIndex);
+            int hours = cursor.getInt(creditIndex);
+            calc.addPointsAndHours(hours,grade);
             cursor.moveToNext();
+
         }
 
-        return gradesAndPoints;
+
+        return calc.calculateGPA();
     }
 
     /**

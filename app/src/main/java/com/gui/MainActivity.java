@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         //setup database connection and grab required list from the database
         SDQ = new SemesterDatabaseQuery (this , false);
-        List<GPACalculation> gpaCalcs = new LinkedList<>();
+        List<GPACalculation> gpaCalcs;
         gpaCalcs  = SDQ.getAllSemesterNamesAndGPA();
         if(gpaCalcs.size() > 0) {
         /*
