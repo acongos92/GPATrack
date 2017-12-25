@@ -62,24 +62,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         /*
          * item touch helper setup to handle swipe to deletel
          */
-        ItemTouchHelper.SimpleCallback swipe = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-            public boolean onMove(RecyclerView recyclerView,
-                                           RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-
-                return true;// true if moved, false otherwise
-            }
-
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
-                int pos = viewHolder.getAdapterPosition();
-                View view  = semesterRecyclerView.getChildAt(pos);
-                String className = displaySemesterAdapter.getTrimmedSwipedName(view);
-                confirmSwipeDelete(className, SEMESTER_NAME);
-
-                displaySemesterAdapter.notifyDataSetChanged();
-
-            }
-        };
+        ItemTouchHelper.SimpleCallback swipe = setupSwipeCallback();
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipe);
 
@@ -98,6 +81,26 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     /*
      * convenience methods
      */
+    private ItemTouchHelper.SimpleCallback setupSwipeCallback (){
+        return new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            public boolean onMove(RecyclerView recyclerView,
+                                  RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+
+                return true;// true if moved, false otherwise
+            }
+
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
+                int pos = viewHolder.getAdapterPosition();
+                View view  = semesterRecyclerView.getChildAt(pos);
+                String className = displaySemesterAdapter.getTrimmedSwipedName(view);
+                confirmSwipeDelete(className, SEMESTER_NAME);
+
+                displaySemesterAdapter.notifyDataSetChanged();
+
+            }
+        };
+    }
     private String getExtras(){
         Intent intent = getIntent();
         String semesterName;
@@ -142,7 +145,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         String no  ="no";
         DisplayIndividualSemesterClassDeletion listener = new DisplayIndividualSemesterClassDeletion(getApplicationContext(), displaySemesterAdapter);
         listener.setClassName(className);
-        listener.setSemName(SEMESTER_NAME);
+        listener.setSemName(semesterName);
         AlertDialog dia = new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).
                 setTitle("Confirm Delete").setMessage(deletePrompt).setPositiveButton(yes , listener).
                 setNegativeButton(no, listener).show();
