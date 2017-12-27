@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.GuiExtensions.DisplayIndividualSemesterClassDeletion;
 import com.adapters.DisplayIndividualSemesterAdapter;
-import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
@@ -103,14 +102,12 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     }
     private String getExtras(){
         Intent intent = getIntent();
-        String semesterName;
-        if(intent.hasExtra("semName")) {
-            semesterName = intent.getExtras().getString("semName");
-        }
-        else{
-            logger.warning("Semester name not placed in intent, whoops");
-            semesterName = "No Name Found";
-        }
+        String semesterName = "No Name Found";
+            try {
+                semesterName = intent.getExtras().getString("semName");
+            }catch (NullPointerException e){
+                logger.warning("Semester name not placed in intent, whoops");
+            }
         return semesterName;
     }
 
