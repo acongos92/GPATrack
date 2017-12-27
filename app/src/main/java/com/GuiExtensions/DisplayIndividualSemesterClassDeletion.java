@@ -10,10 +10,10 @@ import com.database.SemesterDatabaseQuery;
 import com.gui.DisplayIndivudalSemester;
 
 /**
- * Created by Andy on 12/24/2017.
+ * Created by Andy on 12/24/2017. handles listener functionality for swipe to delete
  */
-//probably junk
-public class DisplayIndividualSemesterClassDeletion extends DisplayIndivudalSemester implements DialogInterface.OnClickListener {
+
+public abstract class DisplayIndividualSemesterClassDeletion extends DisplayIndivudalSemester implements DialogInterface.OnClickListener {
         private String className;
         private String semName;
         private Context context;
