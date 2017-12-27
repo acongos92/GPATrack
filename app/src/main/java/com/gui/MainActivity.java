@@ -155,9 +155,8 @@ public class MainActivity extends AppCompatActivity
 
     private void makeToast(String message){
         Context context = getApplicationContext();
-        CharSequence text = message;
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast = Toast.makeText(context, message, duration);
         toast.show();
     }
 

@@ -44,6 +44,7 @@ public class DisplayGPAStatistics extends AppCompatActivity {
 
 
     }
+    //TODO: add best semester, worst semester, all A range classes, all B range classes all c range etc 
     @Override
     public void onDestroy(){
         if(SDQ != null){
