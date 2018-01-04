@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.adapters.PopupSemesterAdapter;
+import com.constants.Constants;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
@@ -38,7 +39,7 @@ public class SelectSemesterPopup extends AppCompatActivity  {
             logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
             Intent i = new Intent(SelectSemesterPopup.this, AddClassToSemester.class);
             //Gives semester name to the new activity as extra data
-            i.putExtra("semName", semesterItemName);
+            i.putExtra(Constants.SEM_NAME, semesterItemName);
             startActivity(i);
         }
     };

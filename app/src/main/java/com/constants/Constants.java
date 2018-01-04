@@ -18,4 +18,9 @@ public class Constants {
     public static final double D_PLUS = 1.30;
     public static final double D = 1.00;
     public static final Logger LOGGER = Logger.getLogger("Application level logger");
+
+    /*
+     * Intent key constants
+     */
+    public static final String SEM_NAME = "semName";
 }

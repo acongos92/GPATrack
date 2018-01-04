@@ -38,7 +38,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
     private Spinner letterGrade;
     private SemesterDatabaseQuery SDQ;
     private String GRADES = "Grade";
-    private String SEMNAME;
+    private String semesterName;
     /*
      * Click Listener implementations
      */
@@ -51,7 +51,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
                 mCreditHours.setText("");
                 makeToast("Class Successfully added");
                 Intent i = new Intent(AddClassToSemester.this, DisplayIndividualSemester.class);
-                i.putExtra("semName", SEMNAME);
+                i.putExtra(Constants.SEM_NAME, semesterName);
                 startActivity(i);
             }
         }
@@ -59,7 +59,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        SEMNAME = i.getExtras().getString("semName");
+        semesterName = i.getExtras().getString(Constants.SEM_NAME);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_semester);
         mClassName = (EditText) findViewById(R.id.class_name);
@@ -85,7 +85,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         SDQ = new SemesterDatabaseQuery(this, true);
 
         Intent intent = getIntent();
-        String sem = intent.getExtras().getString("semName");
+        String sem = intent.getExtras().getString(Constants.SEM_NAME);
 
         grade = letterGrade.getSelectedItem().toString();
         className = mClassName.getText().toString();

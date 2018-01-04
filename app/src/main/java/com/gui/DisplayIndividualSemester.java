@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.GuiExtensions.DisplayIndividualSemesterClassDeletion;
 
 import com.adapters.DisplayIndividualSemesterAdapter;
+import com.constants.Constants;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
@@ -47,7 +48,7 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
         @Override
         public void onClick(View v){
             Intent i = new Intent(DisplayIndividualSemester.this, AddClassToSemester.class);
-            i.putExtra("semName", SEMESTER_NAME);
+            i.putExtra(Constants.SEM_NAME, SEMESTER_NAME);
             startActivity(i);
         }
     };
@@ -134,7 +135,7 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
         Intent intent = getIntent();
         String semesterName = "No Name Found";
             try {
-                semesterName = intent.getExtras().getString("semName");
+                semesterName = intent.getExtras().getString(Constants.SEM_NAME);
             }catch (NullPointerException e){
                 logger.warning("Semester name not placed in intent, whoops");
             }
