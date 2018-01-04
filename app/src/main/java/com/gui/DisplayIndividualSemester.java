@@ -14,12 +14,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.GuiExtensions.DisplayIndividualSemesterClassDeletion;
-import com.GuiExtensions.DisplaySemesterFABClickListener;
+
 import com.adapters.DisplayIndividualSemesterAdapter;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
+
 
 /**
  * Created by selle on 9/16/2017.
@@ -38,6 +39,15 @@ public class DisplayIndividualSemester extends AppCompatActivity implements Disp
     private String SEMESTER_NAME;
 
     private FloatingActionButton fab;
+
+    private View.OnClickListener fabClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            Intent i = new Intent(DisplayIndividualSemester.this, AddClassToSemester.class);
+            i.putExtra("semName", SEMESTER_NAME);
+            startActivity(i);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -88,7 +98,7 @@ public class DisplayIndividualSemester extends AppCompatActivity implements Disp
         logger.info("Start FAB creation");
         fab = (FloatingActionButton) findViewById(R.id.fab_quick_add);
         fab.setSize(FloatingActionButton.SIZE_AUTO);
-        fab.setOnClickListener(new DisplaySemesterFABClickListener(this,SEMESTER_NAME));
+        fab.setOnClickListener(fabClickListener);
         fab.setClickable(true);
     }
     private ItemTouchHelper.SimpleCallback setupSwipeCallback (){
