@@ -129,8 +129,17 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.current_gpa) {
             startActivity(new Intent(MainActivity.this, DisplayGPAStatistics.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.estimate_gpa){
+            startActivity(new Intent(MainActivity.this, EstimateGPA.class));
         } else if (id == R.id.nav_share) {
-            makeToast("Share Feature Coming soon");
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, "GPATrack");
+            String sAux = "I calculated my GPA using GPATrack!\n";
+            // TODO: 1/4/2018 Fix Google play store link.
+            sAux = sAux + "https://play.google.com/store/apps/details?id=PUTSTUFFHERE";
+            i.putExtra(Intent.EXTRA_TEXT, sAux);
+            startActivity(Intent.createChooser(i, "Applications"));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_send) {
             makeToast("Send Feature Coming soon");

@@ -14,6 +14,10 @@
             android:id="@+id/current_gpa"
             android:icon="@drawable/ic_current_gpa"
             android:title="@string/show_gpa_stats"/>
+        <item
+            android:id="@+id/estimate_gpa"
+            android:icon="@drawable/ic_add_new_class"
+            android:title="Estimate GPA"/>
     </group>
 
     <item android:title="Communicate">

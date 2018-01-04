@@ -39,5 +39,8 @@
     <string name="create">Create</string>
     <string name="ask_for_semester_name_input">Input Semester Name</string>
     <string name="no_semesters_prompt">Looks like you have no classes yet, try clicking the menu button</string>
-    <string name="title_activity_how_to_fab">HowToFab</string>
+
+
+    <!-- Estimate strings-->
+    <string name="estimate_notice">Estimate your GPA</string>
 </resources>
