@@ -19,25 +19,20 @@ import java.util.logging.Logger;
 
 public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<DisplayIndividualSemesterAdapter.ClassViewHolder> {
 
-    //Nested Interface to define click listeners
-    public interface ClassItemClickListener {
-        void onClassItemClick(String classItemClicked);
-    }
+
 
     //adapter variable declarations
     private static final String TAG = PopupSemesterAdapter.class.getSimpleName();
     private static final Logger LOGGER = Logger.getLogger("DisplayIndiSemesterAdapter Logger");
     private Context mContext;
-    private ClassItemClickListener clickListener;
     private ClassGrade classGrade;
     private final String CLASS_NAME_PREFIX = "Class: ";
     private final String CLASS_GRADE_PREFIX  = "Grade: ";
 
 
     //Constructor
-    public DisplayIndividualSemesterAdapter(Context context, ClassGrade classGrade, ClassItemClickListener listener) {
+    public DisplayIndividualSemesterAdapter(Context context, ClassGrade classGrade) {
         this.mContext = context;
-        clickListener = listener;
         this.classGrade = classGrade;
     }
 
@@ -131,7 +126,7 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
     }
 
 
-    class ClassViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ClassViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView classNameItemView;
         protected TextView classGradeItemView;
@@ -140,12 +135,6 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
             super(itemView);
             classNameItemView = (TextView) itemView.findViewById(R.id.tv_class_name);
             classGradeItemView = (TextView) itemView.findViewById(R.id.tv_class_grade);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-             clickListener.onClassItemClick(String.valueOf(classNameItemView.getText()));
         }
 
         public String getSwipedItemName(View view){

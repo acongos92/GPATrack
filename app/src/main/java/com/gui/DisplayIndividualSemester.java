@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * Created by selle on 9/16/2017.
  */
 
-public class DisplayIndividualSemester extends AppCompatActivity implements DisplayIndividualSemesterAdapter.ClassItemClickListener {
+public class DisplayIndividualSemester extends AppCompatActivity  {
 
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
@@ -82,7 +82,7 @@ public class DisplayIndividualSemester extends AppCompatActivity implements Disp
         itemTouchHelper.attachToRecyclerView(semesterRecyclerView);
         //Finishes setting up the adapter
 
-        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQRead.getAllClassesInASemesters(semesterName) , this);
+        displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQRead.getAllClassesInASemesters(semesterName));
         SDQRead.closeConnection();
         semesterRecyclerView.setAdapter(displaySemesterAdapter);
         createFAB();
@@ -132,14 +132,6 @@ public class DisplayIndividualSemester extends AppCompatActivity implements Disp
         return semesterName;
     }
 
-    @Override
-    public void onClassItemClick(String semesterItemName){
-        //logger.info("DisplayIndividualSemester start onSemesterItemClick");
-        //Intent i = new Intent(DisplayIndividualSemester.this, AddClassToSemester.class);
-        //Gives semester name to the new activity as extra data
-        //i.putExtra("semName", semesterItemName);
-        //startActivity(i);
-    }
 
     /**
      * simple toast convenience method
