@@ -30,6 +30,8 @@ public class SemesterDatabaseQuery {
     private static final Logger logger = Logger.getLogger("Database_Logger");
     private SQLiteDatabase base;
     private SemesterDatabaseHelper dBHelper;
+    //TODO: temp fix to avoid multiple db connections need to change though
+    private int totalHours;
 
     public SemesterDatabaseQuery(Context context, Boolean write) {
         logger.info("start semesterDatabaseQuery constructor");
@@ -114,11 +116,12 @@ public class SemesterDatabaseQuery {
         return names;
     }
 
+
     /**
-     * think this is dead code?
+     * returns the cumulative gpa of a semester
      * @return map containing all credit hours earned at a particular grade point
      */
-    public double getCumulativeGpa(){
+    public GPACalculation getHoursAndGrades(){
         logger.info("start getCreditHoursAndGrades");
         Cursor cursor = wholeDB();
         int numRows = cursor.getCount();
@@ -136,7 +139,7 @@ public class SemesterDatabaseQuery {
         }
 
 
-        return calc.calculateGPA();
+        return calc;
     }
 
     /**
