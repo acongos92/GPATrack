@@ -39,6 +39,9 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
     private String SEMESTER_NAME;
 
     private FloatingActionButton fab;
+    /*
+     * click listener setup
+     */
 
     private View.OnClickListener fabClickListener = new View.OnClickListener() {
         @Override
@@ -48,6 +51,27 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
             startActivity(i);
         }
     };
+
+    private ItemTouchHelper.SimpleCallback swipe =  new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            public boolean onMove(RecyclerView recyclerView,
+                                  RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+
+                return true;// true if moved, false otherwise
+            }
+
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
+                int pos = viewHolder.getAdapterPosition();
+                View view  = semesterRecyclerView.getChildAt(pos);
+                String className = displaySemesterAdapter.getTrimmedSwipedName(view);
+                confirmSwipeDelete(className, SEMESTER_NAME);
+
+                displaySemesterAdapter.notifyDataSetChanged();
+
+            }
+        };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -75,7 +99,6 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
         /*
          * item touch helper setup to handle swipe to deletel
          */
-        ItemTouchHelper.SimpleCallback swipe = setupSwipeCallback();
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipe);
 
@@ -100,26 +123,6 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
         fab.setSize(FloatingActionButton.SIZE_AUTO);
         fab.setOnClickListener(fabClickListener);
         fab.setClickable(true);
-    }
-    private ItemTouchHelper.SimpleCallback setupSwipeCallback (){
-        return new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-            public boolean onMove(RecyclerView recyclerView,
-                                  RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-
-                return true;// true if moved, false otherwise
-            }
-
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir){
-                int pos = viewHolder.getAdapterPosition();
-                View view  = semesterRecyclerView.getChildAt(pos);
-                String className = displaySemesterAdapter.getTrimmedSwipedName(view);
-                confirmSwipeDelete(className, SEMESTER_NAME);
-
-                displaySemesterAdapter.notifyDataSetChanged();
-
-            }
-        };
     }
     private String getExtras(){
         Intent intent = getIntent();

@@ -36,9 +36,24 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
     private EditText mClassName;
     private EditText mCreditHours;
     private Spinner letterGrade;
-
-    SemesterDatabaseQuery SDQ;
-
+    private SemesterDatabaseQuery SDQ;
+    private String GRADES = "Grade";
+    /*
+     * Click Listener implementations
+     */
+    private View.OnClickListener addClassListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            if (isValidClass()) {
+                addToClass();
+                mClassName.setText("");
+                mCreditHours.setText("");
+                makeToast("Class Successfully added");
+            } else {
+                return;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,27 +63,14 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         mClassName = (EditText) findViewById(R.id.class_name);
         mCreditHours = (EditText) findViewById(R.id.credit_hours);
         letterGrade = (Spinner) findViewById(R.id.spinner_select_grade);
-
         ArrayAdapter<String> gradeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item , buildGradesList());
         gradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         Button addClass = (Button) findViewById(R.id.add_class_button);
-        addClass.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v){
-                if (isValidClass()) {
-                    addToClass();
-                    mClassName.setText("");
-                    mCreditHours.setText("");
-                    makeToast("Class Successfully added");
-                } else {
-                    makeToast("All Input fields are required");
-                }
-            }
-        });
-
+        addClass.setOnClickListener(addClassListener);
 
         letterGrade.setAdapter(gradeAdapter);
+        letterGrade.setPrompt("Grade");
 
     }
 
@@ -114,9 +116,15 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
 
         if (mClassName.getText().length() < 1) {
             isGood = false;
+            makeToast("Please Input Class Name");
         }
-        if (mCreditHours.getText().length() < 1) {
+        else if (mCreditHours.getText().length() < 1) {
             isGood = false;
+            makeToast("Please Input Credit Hours");
+        }
+        else if (letterGrade.getSelectedItem().toString().equals(GRADES)){
+            isGood = false;
+            makeToast("Please Select Grade");
         }
 
 
@@ -125,6 +133,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
 
     private List<String> buildGradesList() {
         List<String> grades = new ArrayList<String>();
+        grades.add(GRADES);
         grades.add("A");
         grades.add("A-");
         grades.add("B+");

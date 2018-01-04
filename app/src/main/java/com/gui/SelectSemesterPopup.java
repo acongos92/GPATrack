@@ -18,7 +18,7 @@ import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
 
-public class SelectSemesterPopup extends AppCompatActivity implements PopupSemesterAdapter.SemesterItemClickListener {
+public class SelectSemesterPopup extends AppCompatActivity  {
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
     private PopupSemesterAdapter mPopupAdapter;
@@ -28,6 +28,20 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
     private RecyclerView semesterRecyclerView;
 
     private SemesterDatabaseQuery SDQ;
+
+    /*
+     * click listener implementation
+     */
+    private PopupSemesterAdapter.SemesterItemClickListener semItemListener = new PopupSemesterAdapter.SemesterItemClickListener() {
+        @Override
+        public void onSemesterItemClick(String semesterItemName) {
+            logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
+            Intent i = new Intent(SelectSemesterPopup.this, AddClassToSemester.class);
+            //Gives semester name to the new activity as extra data
+            i.putExtra("semName", semesterItemName);
+            startActivity(i);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -54,7 +68,7 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
         semesterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Finishes setting up the adapter
-        mPopupAdapter = new PopupSemesterAdapter(this, SDQ.getUniqueSemesters(), this);
+        mPopupAdapter = new PopupSemesterAdapter(this, SDQ.getUniqueSemesters(), semItemListener);
 
         semesterRecyclerView.setAdapter(mPopupAdapter);
 
@@ -70,15 +84,6 @@ public class SelectSemesterPopup extends AppCompatActivity implements PopupSemes
 
     }
 
-
-    @Override
-    public void onSemesterItemClick(String semesterItemName){
-        logger.info("SELECTSEMESTERPOPUP start onSemesterItemClick");
-        Intent i = new Intent(SelectSemesterPopup.this, AddClassToSemester.class);
-        //Gives semester name to the new activity as extra data
-        i.putExtra("semName", semesterItemName);
-        startActivity(i);
-    }
 
     private void makeToast(String message){
         Context context = getApplicationContext();

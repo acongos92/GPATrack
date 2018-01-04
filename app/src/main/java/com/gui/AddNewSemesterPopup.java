@@ -20,8 +20,24 @@ public class AddNewSemesterPopup extends AppCompatActivity {
 
     private EditText semesterCreationEditText;
 
-    private RecyclerView semesterRecyclerView;
-
+    /*
+     * Click listener implementation
+     */
+    private View.OnClickListener addClassListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            LOGGER.info("AddNewSemesterPopup create button clicked");
+            if(isValidSemesterName (semesterCreationEditText)) {
+                Intent i = new Intent(AddNewSemesterPopup.this, AddClassToSemester.class);
+                i.putExtra("semName", String.valueOf(semesterCreationEditText.getText()));
+                startActivity(i);
+            }else {
+                makeToast("Semester name was invalid");
+                semesterCreationEditText.setText("");
+            }
+        }
+    }
+    ;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         LOGGER.info("Start AddNewSemesterPopup view");
@@ -45,20 +61,7 @@ public class AddNewSemesterPopup extends AppCompatActivity {
 
 
         Button addClass = (Button) findViewById(R.id.create_new_semester_button);
-        addClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                LOGGER.info("AddNewSemesterPopup create button clicked");
-                if(isValidSemesterName (semesterCreationEditText)) {
-                    Intent i = new Intent(AddNewSemesterPopup.this, AddClassToSemester.class);
-                    i.putExtra("semName", String.valueOf(semesterCreationEditText.getText()));
-                    startActivity(i);
-                }else {
-                    makeToast("Semester name was invalid");
-                    semesterCreationEditText.setText("");
-                }
-            }
-        });
+        addClass.setOnClickListener(addClassListener);
 
     }
 
