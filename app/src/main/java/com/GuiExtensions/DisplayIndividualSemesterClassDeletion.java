@@ -7,13 +7,13 @@ import android.widget.Toast;
 import com.adapters.DisplayIndividualSemesterAdapter;
 import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabaseQuery;
-import com.gui.DisplayIndivudalSemester;
+import com.gui.DisplayIndividualSemester;
 
 /**
  * Created by Andy on 12/24/2017. handles listener functionality for swipe to delete
  */
 
-public class DisplayIndividualSemesterClassDeletion extends DisplayIndivudalSemester implements DialogInterface.OnClickListener {
+public class DisplayIndividualSemesterClassDeletion extends DisplayIndividualSemester implements DialogInterface.OnClickListener {
         private String className;
         private String semName;
         private Context context;

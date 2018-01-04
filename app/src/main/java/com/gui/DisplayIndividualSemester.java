@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * Created by selle on 9/16/2017.
  */
 
-public class DisplayIndivudalSemester extends AppCompatActivity implements DisplayIndividualSemesterAdapter.ClassItemClickListener {
+public class DisplayIndividualSemester extends AppCompatActivity implements DisplayIndividualSemesterAdapter.ClassItemClickListener {
 
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
@@ -86,13 +86,10 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
      */
     private void createFAB(){
         logger.info("Start FAB creation");
-        fab = new FloatingActionButton(this);
-        fab.findViewById(R.id.fab_quick_add);
+        fab = (FloatingActionButton) findViewById(R.id.fab_quick_add);
         fab.setSize(FloatingActionButton.SIZE_AUTO);
-        fab.setBaselineAlignBottom(true);
         fab.setOnClickListener(new DisplaySemesterFABClickListener(this,SEMESTER_NAME));
         fab.setClickable(true);
-
     }
     private ItemTouchHelper.SimpleCallback setupSwipeCallback (){
         return new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -128,7 +125,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     @Override
     public void onClassItemClick(String semesterItemName){
         //logger.info("DisplayIndividualSemester start onSemesterItemClick");
-        //Intent i = new Intent(DisplayIndivudalSemester.this, AddClassToSemester.class);
+        //Intent i = new Intent(DisplayIndividualSemester.this, AddClassToSemester.class);
         //Gives semester name to the new activity as extra data
         //i.putExtra("semName", semesterItemName);
         //startActivity(i);
