@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.adapters.DisplaySemesterGPAAdapter;
 import com.backend_code.GPACalculation;
+import com.constants.Constants;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
 
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity
         logger.info("MAINACTIVITY start onSemesterItemClick");
         Intent i = new Intent(MainActivity.this, DisplayIndividualSemester.class);
         logger.info(semesterItemName);
-        i.putExtra("semName", String.valueOf(semesterItemName));
+        i.putExtra(Constants.SEM_NAME, String.valueOf(semesterItemName));
         startActivity(i);
     }
 

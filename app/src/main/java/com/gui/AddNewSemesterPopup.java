@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.constants.Constants;
 import com.example.android.gpatrack.R;
 
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class AddNewSemesterPopup extends AppCompatActivity {
             LOGGER.info("AddNewSemesterPopup create button clicked");
             if(isValidSemesterName (semesterCreationEditText)) {
                 Intent i = new Intent(AddNewSemesterPopup.this, AddClassToSemester.class);
-                i.putExtra("semName", String.valueOf(semesterCreationEditText.getText()));
+                i.putExtra(Constants.SEM_NAME, String.valueOf(semesterCreationEditText.getText()));
                 startActivity(i);
             }else {
                 makeToast("Semester name was invalid");
