@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.current_gpa) {
             startActivity(new Intent(MainActivity.this, DisplayGPAStatistics.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.estimate_gpa){
+            startActivity(new Intent(MainActivity.this, EstimateGPA.class));
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");

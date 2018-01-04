@@ -43,6 +43,9 @@
         <activity
             android:name="com.gui.DisplayIndividualSemester"
             android:label="Classes in Semester"/>
+        <activity
+            android:name="com.gui.EstimateGPA"
+            android:label="Estimates GPA"/>
     </application>
 
 </manifest>
