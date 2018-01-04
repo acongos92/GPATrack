@@ -109,9 +109,8 @@ public class DisplayIndividualSemesterAdapter extends RecyclerView.Adapter<Displ
         DisplayIndividualSemesterAdapter.ClassViewHolder holder = new ClassViewHolder(view);
         String name = holder.getSwipedItemName(view);
 
-        String trimmedName = name.substring(CLASS_NAME_PREFIX.length());
 
-        return trimmedName;
+        return name.substring(CLASS_NAME_PREFIX.length());
     }
     public void deleteClassFromAdapter(String className){
         classGrade.delete(className);
