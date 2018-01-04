@@ -187,4 +187,5 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
         finish();
         startActivity(getIntent());
     }
+
 }

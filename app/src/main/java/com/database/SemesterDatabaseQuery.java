@@ -185,7 +185,7 @@ public class SemesterDatabaseQuery {
         cursor.moveToFirst();
         int numRows = cursor.getCount();
         for (int i = 0; i < numRows; i++) {
-            //garunteed an order in this cursor object so use the string comparisson to detect change
+            //garunteed an order in this cursor object so use the string comparison to detect change
             String first = cursor.getString(semesterNameColumn);
             if (first.equals(second)){
                 gpas.peekLast().addPointsAndHours(cursor.getInt(creditHoursColumn), cursor.getDouble(gradeColumn));

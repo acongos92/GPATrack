@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity
 
     private Logger logger = Logger.getLogger("MainActivity logger");
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
