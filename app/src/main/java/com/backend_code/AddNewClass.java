@@ -5,7 +5,7 @@ import com.constants.Constants;
 
 import java.util.logging.Logger;
 
-/**
+/*
  * Created by Andy on 8/18/2017. currently has basic functionality to add a class with grade points
  * and letter grade, as well as return this information, does not override to string or anything
  * cool like that. Alternate grade functionality not yet implemented 

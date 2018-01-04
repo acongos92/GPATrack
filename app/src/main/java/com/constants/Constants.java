@@ -2,8 +2,8 @@ package com.constants;
 
 import java.util.logging.Logger;
 
-/**
- * Created by zigza on 8/18/2017.
+/*
+ * Created by Andy on 8/18/2017.
  */
 
 public class Constants {

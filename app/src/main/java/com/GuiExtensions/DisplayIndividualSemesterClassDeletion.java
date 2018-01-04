@@ -9,7 +9,7 @@ import com.backend_code.DatabaseDTO;
 import com.database.SemesterDatabaseQuery;
 import com.gui.DisplayIndividualSemester;
 
-/**
+/*
  * Created by Andy on 12/24/2017. handles listener functionality for swipe to delete
  */
 

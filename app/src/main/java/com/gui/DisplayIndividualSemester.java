@@ -22,7 +22,7 @@ import com.example.android.gpatrack.R;
 import java.util.logging.Logger;
 
 
-/**
+/*
  * Created by selle on 9/16/2017.
  */
 

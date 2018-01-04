@@ -49,8 +49,6 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
                 mClassName.setText("");
                 mCreditHours.setText("");
                 makeToast("Class Successfully added");
-            } else {
-                return;
             }
         }
     };

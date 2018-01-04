@@ -28,8 +28,8 @@ import java.util.logging.Logger;
 
 public class SemesterDatabaseQuery {
     private static final Logger logger = Logger.getLogger("Database_Logger");
-    SQLiteDatabase base;
-    SemesterDatabaseHelper dBHelper;
+    private SQLiteDatabase base;
+    private SemesterDatabaseHelper dBHelper;
 
     public SemesterDatabaseQuery(Context context, Boolean write) {
         logger.info("start semesterDatabaseQuery constructor");
