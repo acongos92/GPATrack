@@ -38,6 +38,7 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
     private Spinner letterGrade;
     private SemesterDatabaseQuery SDQ;
     private String GRADES = "Grade";
+    private String SEMNAME;
     /*
      * Click Listener implementations
      */
@@ -49,19 +50,22 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
                 mClassName.setText("");
                 mCreditHours.setText("");
                 makeToast("Class Successfully added");
+                Intent i = new Intent(AddClassToSemester.this, DisplayIndividualSemester.class);
+                i.putExtra("semName", SEMNAME);
+                startActivity(i);
             }
         }
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
+        Intent i = getIntent();
+        SEMNAME = i.getExtras().getString("semName");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_semester);
         mClassName = (EditText) findViewById(R.id.class_name);
         mCreditHours = (EditText) findViewById(R.id.credit_hours);
         letterGrade = (Spinner) findViewById(R.id.spinner_select_grade);
-        ArrayAdapter<String> gradeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item , buildGradesList());
+        ArrayAdapter<String> gradeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, buildGradesList());
         gradeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         Button addClass = (Button) findViewById(R.id.add_class_button);
@@ -71,7 +75,6 @@ public class AddClassToSemester extends AppCompatActivity implements AdapterView
         letterGrade.setPrompt("Grade");
 
     }
-
 
     private void addToClass() {
         String className;
