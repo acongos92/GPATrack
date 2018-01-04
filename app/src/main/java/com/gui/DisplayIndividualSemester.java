@@ -114,6 +114,12 @@ public class DisplayIndividualSemester extends AppCompatActivity  {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(DisplayIndividualSemester.this, MainActivity.class);
+        startActivity(i);
+    }
+
     /*
      * convenience methods
      */
