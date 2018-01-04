@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.GuiExtensions.DisplayIndividualSemesterClassDeletion;
+import com.GuiExtensions.DisplaySemesterFABClickListener;
 import com.adapters.DisplayIndividualSemesterAdapter;
 import com.database.SemesterDatabaseQuery;
 import com.example.android.gpatrack.R;
@@ -23,7 +25,7 @@ import java.util.logging.Logger;
  * Created by selle on 9/16/2017.
  */
 
-public class DisplayIndivudalSemester extends AppCompatActivity implements DisplayIndividualSemesterAdapter.ClassItemClickListener {
+public class DisplayIndividualSemester extends AppCompatActivity implements DisplayIndividualSemesterAdapter.ClassItemClickListener {
 
     private static final Logger logger = Logger.getLogger("AddNewClass log");
 
@@ -34,6 +36,8 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     private SemesterDatabaseQuery SDQRead;
 
     private String SEMESTER_NAME;
+
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -47,7 +51,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         String semesterName = getExtras();
         //writing in for proper database deletion method
-        this.SEMESTER_NAME = semesterName;
+        SEMESTER_NAME = semesterName;
 
         /*
          * Recycler view setup
@@ -71,7 +75,7 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         displaySemesterAdapter = new DisplayIndividualSemesterAdapter(this, SDQRead.getAllClassesInASemesters(semesterName) , this);
         SDQRead.closeConnection();
         semesterRecyclerView.setAdapter(displaySemesterAdapter);
-
+        createFAB();
 
 
 
@@ -80,6 +84,13 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     /*
      * convenience methods
      */
+    private void createFAB(){
+        logger.info("Start FAB creation");
+        fab = (FloatingActionButton) findViewById(R.id.fab_quick_add);
+        fab.setSize(FloatingActionButton.SIZE_AUTO);
+        fab.setOnClickListener(new DisplaySemesterFABClickListener(this,SEMESTER_NAME));
+        fab.setClickable(true);
+    }
     private ItemTouchHelper.SimpleCallback setupSwipeCallback (){
         return new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
@@ -114,12 +125,16 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
     @Override
     public void onClassItemClick(String semesterItemName){
         //logger.info("DisplayIndividualSemester start onSemesterItemClick");
-        //Intent i = new Intent(DisplayIndivudalSemester.this, AddClassToSemester.class);
+        //Intent i = new Intent(DisplayIndividualSemester.this, AddClassToSemester.class);
         //Gives semester name to the new activity as extra data
         //i.putExtra("semName", semesterItemName);
         //startActivity(i);
     }
 
+    /**
+     * simple toast convenience method
+     * @param message
+     */
     private void makeToast(String message){
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
@@ -127,7 +142,9 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         toast.show();
     }
 
-
+    /**
+     * ensure database connection closed if it was in use
+     */
     @Override
     public void onDestroy(){
         if(SDQRead != null){
@@ -136,6 +153,11 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
         super.onDestroy();
     }
 
+    /**
+     * handle swipe to delete on individual classes
+     * @param className
+     * @param semesterName
+     */
     public void confirmSwipeDelete(String className , String semesterName){
         String deletePrompt = "Do you wish to delete " + className + "?";
         String yes = "yes";
@@ -151,7 +173,9 @@ public class DisplayIndivudalSemester extends AppCompatActivity implements Displ
 
     }
 
-
+    /**
+     * ensure information from intent is collected
+     */
     @Override
     public void onRestart(){
         super.onRestart();
